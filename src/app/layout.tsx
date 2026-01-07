@@ -1,18 +1,15 @@
 import type { Metadata } from "next";
-import { Inter, Unbounded, Cinzel } from "next/font/google";
+import { Inter, Cinzel_Decorative, Courier_Prime } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/context/ThemeContext";
-import PageTransition from "@/components/common/PageTransition";
-import { AuthProvider } from "@/context/AuthContext";
-import { SoundProvider } from "@/context/SoundContext";
+import SmoothScroll from "@/components/layout/SmoothScroll"; // We'll make this small wrapper
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const unbounded = Unbounded({ subsets: ["latin"], variable: "--font-unbounded" }); // Modern/Sci-fi
-const cinzel = Cinzel({ subsets: ["latin"], variable: "--font-cinzel" }); // Magical/Marvel
+const cinzel = Cinzel_Decorative({ weight: ["400", "700", "900"], subsets: ["latin"], variable: "--font-cinematic" });
+const courier = Courier_Prime({ weight: ["400", "700"], subsets: ["latin"], variable: "--font-retro" });
 
 export const metadata: Metadata = {
-  title: "HackWithMumbai 2.0 | Initialize Protocol...",
-  description: "National Level Hackathon Registration Platform",
+  title: "HackWithMumbai 2.0 | Multiverse of Code",
+  description: "National Level Hackathon - Enter the Multiverse.",
 };
 
 export default function RootLayout({
@@ -21,18 +18,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${unbounded.variable} ${cinzel.variable}`}>
-        <ThemeProvider>
-          <SoundProvider>
-            <AuthProvider>
-              <PageTransition>
-                {children}
-              </PageTransition>
-            </AuthProvider>
-          </SoundProvider>
-        </ThemeProvider>
-        <script src="https://checkout.razorpay.com/v1/checkout.js" async />
+    <html lang="en">
+      <body className={`${inter.variable} ${cinzel.variable} ${courier.variable} antialiased bg-darkhold text-white overflow-x-hidden`}>
+        <div className="vignette fixed inset-0 pointer-events-none z-40"></div>
+        <div className="crt fixed inset-0 pointer-events-none z-50"></div>
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );

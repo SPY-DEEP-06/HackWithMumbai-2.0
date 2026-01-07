@@ -1,49 +1,39 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Navbar from "@/components/common/Navbar";
-import Hero from "@/components/landing/Hero";
-import StartupLoader from "@/components/startup/StartupLoader";
-import AboutSection from "@/components/landing/AboutSection";
-import StatsSection from "@/components/landing/StatsSection";
-import OrganizersSection from "@/components/landing/OrganizersSection";
-import RulesSection from "@/components/landing/RulesSection";
-import GallerySection from "@/components/landing/GallerySection";
-import { AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import dynamic from "next/dynamic";
+import Hero from "@/components/sections/Hero";
+import About from "@/components/sections/About";
+import Gallery from "@/components/sections/Gallery";
+import Rules from "@/components/sections/Rules";
+import Organizers from "@/components/sections/Organizers";
+import Footer from "@/components/layout/Footer";
+import Preloader from "@/components/layout/Preloader";
+
+// Dynamically import heavy 3D components
+const MultiverseBackground = dynamic(() => import("@/components/canvas/MultiverseBackground"), {
+  ssr: false,
+});
 
 export default function Home() {
-  const [showStartup, setShowStartup] = useState(true);
-
-  useEffect(() => {
-    // Determine if we should show startup
-    const hasSeen = typeof window !== 'undefined' ? sessionStorage.getItem("hwm-startup-seen") : null;
-    if (hasSeen) {
-      setShowStartup(false);
-    }
-  }, []);
-
-  const handleStartupComplete = () => {
-    sessionStorage.setItem("hwm-startup-seen", "true");
-    setShowStartup(false);
-  };
+  const [loading, setLoading] = useState(true);
 
   return (
-    <main className="min-h-screen flex flex-col relative w-full overflow-hidden">
-      <AnimatePresence mode="wait">
-        {showStartup ? (
-          <StartupLoader onComplete={handleStartupComplete} key="startup" />
-        ) : (
-          <div key="content" className="w-full">
-            <Navbar />
-            <Hero />
-            <AboutSection />
-            <GallerySection />
-            <RulesSection />
-            <StatsSection />
-            <OrganizersSection />
-          </div>
-        )}
-      </AnimatePresence>
+    <main className="relative w-full min-h-screen overflow-x-hidden selection:bg-scarlet selection:text-black">
+      {loading && <Preloader onComplete={() => setLoading(false)} />}
+
+      {!loading && (
+        <>
+          <MultiverseBackground />
+
+          <Hero />
+          <About />
+          <Gallery />
+          <Rules />
+          <Organizers />
+          <Footer />
+        </>
+      )}
     </main>
   );
 }
