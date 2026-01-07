@@ -7,6 +7,8 @@ import StartupLoader from "@/components/startup/StartupLoader";
 import AboutSection from "@/components/landing/AboutSection";
 import StatsSection from "@/components/landing/StatsSection";
 import OrganizersSection from "@/components/landing/OrganizersSection";
+import RulesSection from "@/components/landing/RulesSection";
+import GallerySection from "@/components/landing/GallerySection";
 import { AnimatePresence } from "framer-motion";
 
 export default function Home() {
@@ -35,6 +37,8 @@ export default function Home() {
             <Navbar />
             <Hero />
             <AboutSection />
+            <GallerySection />
+            <RulesSection />
             <StatsSection />
             <OrganizersSection />
           </div>

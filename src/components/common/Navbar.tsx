@@ -5,11 +5,13 @@ import ThemeToggle from "./ThemeToggle";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useAuth } from "@/context/AuthContext";
-import { LogOut, User as UserIcon } from "lucide-react";
+import { LogOut, User as UserIcon, Volume2, VolumeX } from "lucide-react";
+import { useSound } from "@/context/SoundContext";
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const { user, logout } = useAuth();
+    const { muted, toggleMute, play } = useSound();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -19,6 +21,14 @@ export default function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    const scrollToSection = (id: string) => {
+        const el = document.getElementById(id);
+        if (el) {
+            play("click");
+            el.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
     return (
         <motion.nav
             initial={{ y: -100 }}
@@ -27,16 +37,25 @@ export default function Navbar() {
                 }`}
         >
             <div className="container mx-auto px-4 flex items-center justify-between">
-                <Link href="/" className="text-xl md:text-2xl font-bold tracking-tighter text-glow group">
+                <Link href="/" className="text-xl md:text-2xl font-bold tracking-tighter text-glow group" onClick={() => play("click")}>
                     HWM<span className="text-primary group-hover:animate-pulse">2.0</span>
                 </Link>
 
                 <div className="flex items-center gap-4">
                     <div className="hidden md:flex gap-6 text-sm font-medium text-muted-foreground mr-4">
-                        <Link href="/about" className="hover:text-primary transition-colors">About</Link>
-                        <Link href="/gallery" className="hover:text-primary transition-colors">Gallery</Link>
-                        <Link href="/rules" className="hover:text-primary transition-colors">Protocol</Link>
+                        <button onClick={() => scrollToSection('about')} className="hover:text-primary transition-colors uppercase tracking-widest text-xs">Mission</button>
+                        <button onClick={() => scrollToSection('gallery')} className="hover:text-primary transition-colors uppercase tracking-widest text-xs">Archives</button>
+                        <button onClick={() => scrollToSection('rules')} className="hover:text-primary transition-colors uppercase tracking-widest text-xs">Protocol</button>
                     </div>
+
+                    <button
+                        onClick={() => { toggleMute(); play("click"); }}
+                        className="text-muted-foreground hover:text-primary transition-colors p-2"
+                        aria-label={muted ? "Unmute Sound" : "Mute Sound"}
+                    >
+                        {muted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+                    </button>
+
                     <ThemeToggle />
 
                     {user ? (

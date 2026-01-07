@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 
 export default function AboutSection() {
     return (
-        <section id="about" className="min-h-screen py-20 px-8 flex items-center justify-center relative bg-black/80">
+        <section id="about" className="py-20 px-4 md:px-8 container mx-auto relative overflow-hidden">
+            {/* Background Decor */}
             <div className="absolute inset-0 bg-[url('/noise.png')] opacity-10 pointer-events-none"></div>
             <div className="max-w-4xl text-center z-10">
                 <motion.h2

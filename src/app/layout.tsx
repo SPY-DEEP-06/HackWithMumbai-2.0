@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
 import PageTransition from "@/components/common/PageTransition";
 import { AuthProvider } from "@/context/AuthContext";
+import { SoundProvider } from "@/context/SoundContext";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const unbounded = Unbounded({ subsets: ["latin"], variable: "--font-unbounded" }); // Modern/Sci-fi
@@ -23,11 +24,13 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${unbounded.variable} ${cinzel.variable}`}>
         <ThemeProvider>
-          <AuthProvider>
-            <PageTransition>
-              {children}
-            </PageTransition>
-          </AuthProvider>
+          <SoundProvider>
+            <AuthProvider>
+              <PageTransition>
+                {children}
+              </PageTransition>
+            </AuthProvider>
+          </SoundProvider>
         </ThemeProvider>
         <script src="https://checkout.razorpay.com/v1/checkout.js" async />
       </body>

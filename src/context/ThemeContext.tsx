@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-type Theme = "stranger" | "hybrid" | "marvel";
+export type Theme = "stranger" | "hybrid" | "marvel";
 
 interface ThemeContextType {
     theme: Theme;

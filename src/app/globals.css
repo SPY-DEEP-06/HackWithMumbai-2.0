@@ -2,70 +2,77 @@
 
 @layer base {
   :root {
-    /* Default to Stranger Theme if not specified */
-    --background: 10 10% 4%;
-    /* Ash Black #0a0a0a */
-    --foreground: 0 0% 70%;
-    /* Fog Grey #b3b3b3 */
+    /* Global Color Tokens */
+    --bg-primary: 5 5 5;
+    /* #050505 */
+    --text-primary: 234 234 234;
+    /* #eaeaea */
 
-    --primary: 0 100% 30%;
-    /* Blood Red #990000 */
-    --primary-foreground: 0 0% 90%;
+    --energy-red: 177 18 38;
+    /* #b11226 */
+    --energy-blue: 58 180 255;
+    /* #3ab4ff */
+    --energy-purple: 109 76 255;
+    /* #6d4cff */
+    --energy-gold: 245 193 108;
+    /* #f5c16c */
 
-    --secondary: 0 62% 10%;
-    /* Dark Maroon #2b0a0a */
-    --secondary-foreground: 0 0% 80%;
+    /* Status Tokens */
+    --success: 60 255 127;
+    /* #3cff7f */
+    --pending: 255 176 32;
+    /* #ffb020 */
+    --error: 255 60 60;
+    /* #ff3c3c */
 
-    --accent: 0 100% 50%;
-    /* Neon Red #ff0000 */
-    --accent-foreground: 0 0% 98%;
-
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 50%;
-
-    --border: 0 62% 15%;
-    --radius: 0.5rem;
-
-    /* Animation Speeds */
-    --portal-speed: 20s;
+    /* Motion Tokens */
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-glitch: steps(2, jump-none);
+    --duration-fast: 300ms;
+    --duration-medium: 600ms;
+    --duration-slow: 1200ms;
   }
 
   /* STRANGER THINGS MODE */
   [data-theme="stranger"] {
-    --background: 10 10% 4%;
-    --foreground: 0 0% 70%;
-    --primary: 0 100% 30%;
-    --primary-foreground: 0 0% 90%;
-    --secondary: 0 62% 10%;
-    --secondary-foreground: 0 0% 80%;
-    --accent: 0 100% 50%;
-    --accent-foreground: 0 0% 98%;
-    --border: 0 62% 15%;
+    --background: var(--bg-primary);
+    --foreground: var(--text-primary);
+    --primary: 220 38 38;
+    /* Red-600 */
+    --primary-foreground: 255 255 255;
+    --secondary: 17 24 39;
+    /* Gray-900 */
+    --secondary-foreground: 243 244 246;
+    --accent: var(--energy-red);
+    --muted: 31 41 55;
+    --muted-foreground: 156 163 175;
+    --border: 69 10 10;
+    --portal-speed: 20s;
+    --radius: 0.5rem;
     --font-heading: "Stranger Things", sans-serif;
   }
 
   /* HYBRID MODE */
   [data-theme="hybrid"] {
-    --background: 240 30% 4%;
-    /* Dark Cosmic #050510 */
-    --foreground: 0 0% 88%;
-    --primary: 0 100% 50%;
-    /* Chaos Red */
-    --primary-foreground: 0 0% 98%;
-    --secondary: 186 100% 50%;
-    /* Electric Blue */
-    --secondary-foreground: 186 100% 10%;
-    --accent: 277 100% 50%;
-    /* Multiverse Purple */
-    --accent-foreground: 0 0% 98%;
-    --border: 277 50% 20%;
+    --background: 10 10 20;
+    --foreground: 216 180 254;
+    --primary: 168 85 247;
+    /* Purple-500 */
+    --primary-foreground: 255 255 255;
+    --secondary: 49 46 129;
+    /* Indigo-900 */
+    --secondary-foreground: 224 231 255;
+    --accent: var(--energy-blue);
+    --muted: 30 27 75;
+    --muted-foreground: 165 180 252;
+    --border: 76 29 149;
+    --portal-speed: 10s;
+    --radius: 0.5rem;
     --font-heading: "Hybrid Sans", sans-serif;
   }
 
   /* MARVEL MODE */
   [data-theme="marvel"] {
-    --background: 260 50% 2%;
-    /* Deep Space */
     --foreground: 0 0% 100%;
     --primary: 275 87% 36%;
     /* Cosmic Purple #6a0dad */

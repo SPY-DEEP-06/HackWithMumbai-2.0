@@ -104,31 +104,36 @@ export default function AdminPage() {
     return (
         <main className="min-h-screen bg-black text-green-400 font-mono p-4">
             <header className="flex justify-between items-center mb-8 border-b border-green-900 pb-4">
-                <h1 className="text-2xl font-bold flex items-center gap-2">
-                    <ShieldCheck /> OVERWATCH COMMAND
+                <h1 className="text-3xl font-bold flex items-center gap-2 uppercase tracking-[0.2em] text-green-500 text-glow">
+                    <ShieldCheck className="animate-pulse" /> Intelligence Control
                 </h1>
-                <button onClick={() => setAuthorized(false)} className="text-red-500 text-sm hover:underline">TERMINATE SESSION</button>
+                <button onClick={() => setAuthorized(false)} className="text-red-500 text-xs uppercase tracking-widest hover:bg-red-900/10 px-4 py-2 border border-red-900/30 rounded transition-all">
+                    [ Terminate Session ]
+                </button>
             </header>
 
             {/* Stats Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                <div className="bg-green-900/10 border border-green-900/50 p-4 rounded">
-                    <div className="text-xs text-green-600 uppercase">Total Teams</div>
-                    <div className="text-3xl font-bold text-white">{stats.totalTeams}</div>
+                <div className="bg-black border border-green-800 p-6 rounded relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 p-2 opacity-20 group-hover:opacity-50 transition-opacity"><Lock size={40} /></div>
+                    <div className="text-xs text-green-600 uppercase tracking-widest mb-2">Total Operatives</div>
+                    <div className="text-4xl font-bold text-white font-mono">{String(stats.totalParticipants).padStart(3, '0')}</div>
                 </div>
-                <div className="bg-green-900/10 border border-green-900/50 p-4 rounded">
-                    <div className="text-xs text-green-600 uppercase">Total Revenue</div>
-                    <div className="text-3xl font-bold text-white">₹{stats.totalRevenue}</div>
+                <div className="bg-black border border-green-800 p-6 rounded relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 p-2 opacity-20 group-hover:opacity-50 transition-opacity"><Download size={40} /></div>
+                    <div className="text-xs text-green-600 uppercase tracking-widest mb-2">Revenue Generated</div>
+                    <div className="text-4xl font-bold text-white font-mono">₹{stats.totalRevenue.toLocaleString()}</div>
                 </div>
-                <div className="bg-green-900/10 border border-green-900/50 p-4 rounded">
-                    <div className="text-xs text-green-600 uppercase">Agents Deployed</div>
-                    <div className="text-3xl font-bold text-white">{stats.totalParticipants}</div>
+                <div className="bg-black border border-green-800 p-6 rounded relative overflow-hidden group">
+                    <div className="text-xs text-green-600 uppercase tracking-widest mb-2">Active Units</div>
+                    <div className="text-4xl font-bold text-white font-mono">{String(stats.totalTeams).padStart(3, '0')}</div>
                 </div>
-                <div className="bg-green-900/10 border border-green-900/50 p-4 rounded">
-                    <div className="text-xs text-green-600 uppercase">Authorized (Paid)</div>
-                    <div className="text-3xl font-bold text-white">{stats.paidTeams}</div>
+                <div className="bg-black border border-green-800 p-6 rounded relative overflow-hidden group">
+                    <div className="text-xs text-green-600 uppercase tracking-widest mb-2">Auth Granted</div>
+                    <div className="text-4xl font-bold text-white font-mono">{String(stats.paidTeams).padStart(3, '0')}</div>
                 </div>
             </div>
+
 
             {/* Toolbar */}
             <div className="flex gap-4 mb-6">

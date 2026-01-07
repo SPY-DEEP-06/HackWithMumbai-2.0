@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { User } from "firebase/auth";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronRight, ChevronLeft, CheckCircle, AlertCircle } from "lucide-react";
+import { ChevronRight, ChevronLeft, CheckCircle, AlertCircle, Shield } from "lucide-react";
 import { RegistrationData, TeamSize, MemberDetails } from "@/types/registration";
 
 // Initial State
@@ -27,10 +27,8 @@ export default function RegistrationForm({ user }: { user: User }) {
 
     // --- HANDLERS ---
     const updateTeamSize = (size: TeamSize) => {
-        // Resize members array
         const currentMembers = [...formData.members];
         let newMembers = [];
-        // We need size-1 members (since leader is separate)
         const requiredMembers = size - 1;
 
         for (let i = 0; i < requiredMembers; i++) {
@@ -106,7 +104,7 @@ export default function RegistrationForm({ user }: { user: User }) {
                     contact: formData.leader.mobile,
                 },
                 theme: {
-                    color: "#ff0000",
+                    color: "#b11226",
                 },
             };
 
@@ -120,185 +118,215 @@ export default function RegistrationForm({ user }: { user: User }) {
         }
     };
 
+    // --- COMPONENT HELPERS ---
+    const InputField = ({ ...props }: React.InputHTMLAttributes<HTMLInputElement>) => (
+        <input
+            {...props}
+            className="w-full bg-secondary/10 border border-secondary/30 rounded p-3 text-foreground focus:border-primary outline-none focus:shadow-[0_0_10px_rgba(var(--primary),0.3)] transition-all font-mono text-sm"
+        />
+    );
+
+    const SelectField = ({ children, ...props }: React.SelectHTMLAttributes<HTMLSelectElement>) => (
+        <div className="relative">
+            <select
+                {...props}
+                className="w-full bg-secondary/10 border border-secondary/30 rounded p-3 text-foreground focus:border-primary outline-none appearance-none font-mono text-sm"
+            >
+                {children}
+            </select>
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none opacity-50">▼</div>
+        </div>
+    );
+
     // --- RENDER STEPS ---
 
     // STEP 1: TEAM DETAILS
     const renderStep1 = () => (
-        <div className="space-y-6">
+        <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-8">
             <div className="space-y-2">
-                <label className="text-secondary-foreground font-semibold">Team Name</label>
-                <input
+                <label className="text-primary font-bold uppercase tracking-widest text-xs">Team Codename</label>
+                <InputField
                     type="text"
                     value={formData.teamName}
                     onChange={(e) => setFormData({ ...formData, teamName: e.target.value })}
-                    className="w-full bg-secondary/10 border border-secondary/30 rounded p-3 text-foreground focus:border-primary outline-none"
-                    placeholder="Enter Team Name"
+                    placeholder="ENTER_TEAM_NAME"
                 />
             </div>
-            <div className="space-y-2">
-                <label className="text-secondary-foreground font-semibold">Team Size (Including Leader)</label>
+            <div className="space-y-4">
+                <label className="text-primary font-bold uppercase tracking-widest text-xs">Squad Size (Including Captain)</label>
                 <div className="flex gap-4">
                     {[2, 3, 4].map((size) => (
                         <button
                             key={size}
                             onClick={() => updateTeamSize(size as TeamSize)}
-                            className={`flex-1 p-4 border rounded font-bold transition-all ${formData.teamSize === size
-                                ? "bg-primary text-primary-foreground border-primary"
+                            className={`flex-1 p-6 border rounded font-bold transition-all relative overflow-hidden group ${formData.teamSize === size
+                                ? "bg-primary/20 text-primary border-primary shadow-[0_0_15px_rgba(var(--primary),0.3)]"
                                 : "bg-transparent text-muted-foreground border-white/10 hover:border-white/30"
                                 }`}
                         >
-                            {size} Members
-                            <div className="text-xs font-normal mt-1 opacity-80">₹{FEES[size as TeamSize]}</div>
+                            <span className="text-2xl block mb-2">{size}</span>
+                            <span className="text-xs uppercase tracking-widest">Operatives</span>
+                            <div className="absolute top-0 right-0 p-1 opacity-50 text-[10px] bg-secondary/50">₹{FEES[size as TeamSize]}</div>
+                            {formData.teamSize === size && <motion.div layoutId="size-select" className="absolute inset-0 border-2 border-primary rounded pointer-events-none" />}
                         </button>
                     ))}
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 
-    // STEP 2: LEADER DETAILS
+    // FORM FOR MEMBER
     const renderMemberForm = (data: MemberDetails, onChange: (f: keyof MemberDetails, v: string) => void, title: string) => (
-        <div className="space-y-4 border border-white/10 p-4 rounded bg-white/5">
-            <h3 className="text-xl font-bold text-accent mb-4">{title}</h3>
+        <div className="space-y-4 border-l-2 border-primary/30 pl-6 relative">
+            <div className="absolute -left-[5px] top-0 w-2 h-2 bg-primary rounded-full"></div>
+            <h3 className="text-lg font-bold text-foreground mb-4 font-mono uppercase text-glow">{title}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input placeholder="Full Name" value={data.fullName} onChange={e => onChange("fullName", e.target.value)} className="input-field" />
-                <input placeholder="Email" value={data.email} onChange={e => onChange("email", e.target.value)} className="input-field" type="email" />
-                <input placeholder="Mobile" value={data.mobile} onChange={e => onChange("mobile", e.target.value)} className="input-field" type="tel" />
-                <input placeholder="City" value={data.city} onChange={e => onChange("city", e.target.value)} className="input-field" />
-                <input placeholder="State" value={data.state} onChange={e => onChange("state", e.target.value)} className="input-field" />
-                <input placeholder="College/Company" value={data.college} onChange={e => onChange("college", e.target.value)} className="input-field" />
-                <input placeholder="Enrollment No." value={data.enrollment} onChange={e => onChange("enrollment", e.target.value)} className="input-field" />
+                <InputField placeholder="FULL_NAME" value={data.fullName} onChange={e => onChange("fullName", e.target.value)} />
+                <InputField placeholder="EMAIL_ADDRESS" value={data.email} onChange={e => onChange("email", e.target.value)} type="email" />
+                <InputField placeholder="MOBILE_NO" value={data.mobile} onChange={e => onChange("mobile", e.target.value)} type="tel" />
+                <InputField placeholder="CITY" value={data.city} onChange={e => onChange("city", e.target.value)} />
+                <InputField placeholder="STATE" value={data.state} onChange={e => onChange("state", e.target.value)} />
+                <InputField placeholder="COLLEGE / ORG" value={data.college} onChange={e => onChange("college", e.target.value)} />
+                <InputField placeholder="ENROLLMENT_ID" value={data.enrollment} onChange={e => onChange("enrollment", e.target.value)} />
 
-                <select value={data.branch} onChange={e => onChange("branch", e.target.value)} className="input-field bg-black" aria-label="Branch">
-                    <option value="">Select Branch</option>
+                <SelectField value={data.branch} onChange={e => onChange("branch", e.target.value)} aria-label="Branch">
+                    <option value="">SELECT_BRANCH</option>
                     <option value="CSE">CSE</option>
                     <option value="IT">IT</option>
-                    <option value="AIDS">AIDS</option>
+                    <option value="AIDS">AI / DS</option>
                     <option value="EXTC">EXTC</option>
-                    <option value="Other">Other</option>
-                </select>
+                    <option value="Other">OTHER</option>
+                </SelectField>
 
-                <div className="flex items-center gap-4">
-                    <label className="text-sm">Student?</label>
-                    <select value={data.isStudent} onChange={e => onChange("isStudent", e.target.value as "Yes" | "No")} className="input-field bg-black w-24" aria-label="Is Student">
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                    </select>
+                <div className="flex items-center gap-4 bg-secondary/5 p-2 rounded">
+                    <label className="text-xs uppercase text-muted-foreground">Student_Status?</label>
+                    <div className="flex gap-2">
+                        {["Yes", "No"].map(opt => (
+                            <button
+                                key={opt}
+                                onClick={() => onChange("isStudent", opt)}
+                                className={`text-xs px-3 py-1 rounded border ${data.isStudent === opt ? "bg-primary/20 border-primary text-primary" : "border-transparent text-muted-foreground"}`}
+                            >
+                                {opt.toUpperCase()}
+                            </button>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>
     );
 
-
     return (
-        <div className="max-w-4xl mx-auto bg-black/40 backdrop-blur-md border border-white/10 p-6 md:p-8 rounded-lg shadow-2xl relative">
-            <h2 className="text-2xl font-bold mb-6 flex items-center justify-between">
-                <span>Step {step} of 5</span>
-                <span className="text-sm font-normal text-muted-foreground">{
-                    step === 1 ? "Team Intel" :
-                        step === 2 ? "Leader Profile" :
-                            step === 3 ? "Operative Profiles" :
-                                step === 4 ? "Service History" :
-                                    "Final Protocol"
-                }</span>
-            </h2>
+        <div className="w-full max-w-3xl mx-auto bg-black/40 backdrop-blur-xl border border-white/10 p-8 rounded-lg relative overflow-hidden shadow-2xl">
+            {/* Decorative Corner Markers */}
+            <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary/50"></div>
+            <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary/50"></div>
+            <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-primary/50"></div>
+            <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-primary/50"></div>
 
-            {/* Progress Bar */}
-            <div className="w-full h-1 bg-gray-800 mb-8 rounded-full overflow-hidden">
-                <motion.div
-                    animate={{ width: `${(step / 5) * 100}%` }}
-                    className="h-full bg-primary"
-                />
+            {/* Header */}
+            <div className="mb-8 text-center relative z-10">
+                <h2 className="text-2xl md:text-3xl font-bold mb-2 text-primary uppercase tracking-[0.2em] text-glow">
+                    {step === 1 ? "Operative Manifest" : step === 2 ? "Unit Profile" : step === 3 ? "Squad Roster" : step === 4 ? "Service History" : "Mission Auth"}
+                </h2>
+                <div className="flex items-center justify-center gap-2 text-xs font-mono text-muted-foreground">
+                    <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                    PHASE_{String(step).padStart(2, '0')}_OF_05 // {step === 1 ? "TEAM_INIT" : "DATA_ENTRY"}
+                </div>
             </div>
 
-            <div className="min-h-[400px]">
+            {/* Content Area */}
+            <div className="min-h-[400px] mb-8 relative z-10">
                 {step === 1 && renderStep1()}
-                {step === 2 && renderMemberForm(formData.leader, updateLeader, "Team Leader (Member 01)")}
+
+                {step === 2 && (
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                        {renderMemberForm(formData.leader, updateLeader, "Squad Leader (Captain)")}
+                    </motion.div>
+                )}
+
                 {step === 3 && (
-                    <div className="space-y-6">
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-8">
                         {formData.members.map((member, i) => (
                             <div key={i}>
                                 {renderMemberForm(member, (f, v) => updateMember(i, f, v), `Operative 0${i + 2}`)}
                             </div>
                         ))}
-                    </div>
+                    </motion.div>
                 )}
 
-                {/* Shortened implementation for Steps 4 & 5 to fit in one file for now, can expand later */}
                 {step === 4 && (
-                    <div className="space-y-6 text-center py-10">
-                        <h3 className="text-xl">Participated in Hackathons before?</h3>
-                        <div className="flex justify-center gap-4 mb-8">
-                            <button onClick={() => setFormData({ ...formData, hackathonHistory: { ...formData.hackathonHistory, participatedBefore: "Yes" } })} className={`btn-select ${formData.hackathonHistory.participatedBefore === "Yes" ? "bg-primary" : ""}`}>Yes</button>
-                            <button onClick={() => setFormData({ ...formData, hackathonHistory: { ...formData.hackathonHistory, participatedBefore: "No" } })} className={`btn-select ${formData.hackathonHistory.participatedBefore === "No" ? "bg-primary" : ""}`}>No</button>
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-8 text-center py-10">
+                        <Shield size={48} className="mx-auto text-primary mb-4 opacity-50" />
+                        <h3 className="text-xl font-mono text-foreground">PRIOR_ENGAGEMENT_CHECK</h3>
+                        <p className="text-muted-foreground text-sm max-w-md mx-auto">Has this unit participated in previous hackathons?</p>
+
+                        <div className="flex justify-center gap-4 mt-6">
+                            <button
+                                onClick={() => setFormData({ ...formData, hackathonHistory: { ...formData.hackathonHistory, participatedBefore: "Yes" } })}
+                                className={`w-32 py-3 border rounded font-mono transition-all ${formData.hackathonHistory.participatedBefore === "Yes" ? "bg-primary text-white border-primary shadow-[0_0_15px_rgba(220,38,38,0.4)]" : "border-white/20 text-muted-foreground hover:border-white/50"}`}
+                            >
+                                YES
+                            </button>
+                            <button
+                                onClick={() => setFormData({ ...formData, hackathonHistory: { ...formData.hackathonHistory, participatedBefore: "No" } })}
+                                className={`w-32 py-3 border rounded font-mono transition-all ${formData.hackathonHistory.participatedBefore === "No" ? "bg-primary text-white border-primary shadow-[0_0_15px_rgba(220,38,38,0.4)]" : "border-white/20 text-muted-foreground hover:border-white/50"}`}
+                            >
+                                NO
+                            </button>
                         </div>
-                        {/* Add more history fields as needed */}
-                    </div>
+                    </motion.div>
                 )}
 
                 {step === 5 && (
-                    <div className="space-y-4">
-                        <p className="border p-4 border-yellow-500/50 text-yellow-500 bg-yellow-500/10 rounded">
-                            <AlertCircle className="inline mr-2" />
-                            Total Registration Fee: <span className="font-bold text-xl ml-2">₹{formData.amount}</span>
-                        </p>
-                        <label className="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" checked={formData.declaration.rulesAccepted} onChange={e => setFormData({ ...formData, declaration: { ...formData.declaration, rulesAccepted: e.target.checked } })} className="w-5 h-5 accent-primary" />
-                            <span>I accept the Rules & Code of Conduct.</span>
-                        </label>
-                        {/* More checkboxes */}
-                    </div>
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
+                        <div className="border border-green-500/30 bg-green-500/5 p-6 rounded text-center">
+                            <h3 className="text-green-500 font-bold uppercase tracking-widest mb-2">Fee Calculation Complete</h3>
+                            <div className="text-4xl font-mono font-bold text-white">₹{formData.amount}</div>
+                            <p className="text-xs text-green-500/70 mt-2 font-mono">SECURE_PAYMENT_GATEWAY_READY</p>
+                        </div>
+
+                        <div className="space-y-3 font-mono text-sm text-muted-foreground">
+                            <label className="flex items-start gap-3 cursor-pointer p-3 hover:bg-white/5 rounded transition-colors">
+                                <input type="checkbox" checked={formData.declaration.rulesAccepted} onChange={e => setFormData({ ...formData, declaration: { ...formData.declaration, rulesAccepted: e.target.checked } })} className="mt-1 accent-primary" />
+                                <span>I confirm that all provided intelligence is accurate and I accept the Mission Protocol (Rules & Code of Conduct).</span>
+                            </label>
+                            <label className="flex items-start gap-3 cursor-pointer p-3 hover:bg-white/5 rounded transition-colors">
+                                <input type="checkbox" checked={formData.declaration.nonRefundable} onChange={e => setFormData({ ...formData, declaration: { ...formData.declaration, nonRefundable: e.target.checked } })} className="mt-1 accent-primary" />
+                                <span>I acknowledge that the registration fee is non-refundable upon mission failure or abortion.</span>
+                            </label>
+                        </div>
+                    </motion.div>
                 )}
             </div>
 
             {/* Navigation */}
-            <div className="flex justify-between mt-8 pt-6 border-t border-white/10">
+            <div className="flex justify-between items-center border-t border-white/10 pt-6">
                 <button
                     onClick={handleBack}
                     disabled={step === 1}
-                    className="px-6 py-2 rounded border border-white/20 hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                    className="px-6 py-2 rounded text-xs font-mono uppercase tracking-widest border border-transparent hover:border-white/20 hover:bg-white/5 disabled:opacity-0 transition-all flex items-center gap-2"
                 >
-                    <ChevronLeft size={16} /> Back
+                    <ChevronLeft size={14} /> Back
                 </button>
 
                 {step < 5 ? (
                     <button
                         onClick={handleNext}
-                        className="px-6 py-2 rounded bg-primary text-primary-foreground font-bold hover:bg-primary/80 flex items-center gap-2"
+                        className="px-8 py-3 bg-white text-black font-bold uppercase tracking-widest text-xs hover:bg-primary hover:text-white transition-colors flex items-center gap-2 group"
                     >
-                        Next <ChevronRight size={16} />
+                        Proceed <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
                     </button>
                 ) : (
                     <button
                         onClick={handleSubmit}
                         disabled={!formData.declaration.rulesAccepted || loading}
-                        className="px-8 py-2 rounded bg-green-600 text-white font-bold hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                        className="px-8 py-3 bg-primary text-white font-bold uppercase tracking-widest text-xs hover:bg-red-700 transition-colors flex items-center gap-2 shadow-[0_0_20px_rgba(220,38,38,0.5)] disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                        {loading ? "Processing..." : "Pay & Register"} <CheckCircle size={16} />
+                        {loading ? "Initializing..." : "Authorize & Pay"} <CheckCircle size={14} />
                     </button>
                 )}
             </div>
-
-            <style jsx>{`
-            .input-field {
-                width: 100%;
-                background: rgba(255,255,255,0.05);
-                border: 1px solid rgba(255,255,255,0.1);
-                padding: 12px;
-                border-radius: 4px;
-                color: white;
-                outline: none;
-            }
-            .input-field:focus {
-                border-color: var(--primary);
-            }
-            .btn-select {
-                padding: 10px 20px;
-                border: 1px solid rgba(255,255,255,0.2);
-                border-radius: 4px;
-                min-width: 80px;
-            }
-        `}</style>
         </div>
     );
 }
