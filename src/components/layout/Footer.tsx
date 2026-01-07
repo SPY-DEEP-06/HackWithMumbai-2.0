@@ -12,10 +12,10 @@ export default function Footer() {
                 </h2>
 
                 <div className="flex gap-6 mb-8">
-                    <a href="https://www.instagram.com/hwi.bvudet_nm?igsh=MWxiaWd4cGlubGswaw==" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-scarlet transition-colors">
+                    <a href="https://www.instagram.com/hwi.bvudet_nm?igsh=MWxiaWd4cGlubGswaw==" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-scarlet transition-colors" aria-label="Instagram">
                         <Instagram size={20} />
                     </a>
-                    <a href="https://www.linkedin.com/company/hackwithindia-bvudet-nm-chapter/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-loki transition-colors">
+                    <a href="https://www.linkedin.com/company/hackwithindia-bvudet-nm-chapter/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-loki transition-colors" aria-label="LinkedIn">
                         <Linkedin size={20} />
                     </a>
                 </div>
