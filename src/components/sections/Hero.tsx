@@ -74,11 +74,20 @@ export default function Hero() {
             <div className="flex flex-col md:flex-row gap-6 mt-12">
                 <Link
                     href="https://unstop.com/o/bXKrsvy?lb=0AZaud6X&utm_medium=Share&utm_source=deepagho48277&utm_campaign=Online_coding_challenge"
-                    className="group relative px-8 py-4 bg-scarlet text-white font-bold font-cinematic tracking-wider overflow-hidden hover:scale-105 transition-transform"
+                    className="group relative px-10 py-5 bg-transparent overflow-visible"
                 >
-                    <span className="relative z-10 uppercase">Start Registration</span>
-                    <div className="absolute inset-0 bg-black/20 group-hover:animate-ping opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    <div className="absolute inset-0 border-2 border-white scale-110 group-hover:scale-100 transition-transform duration-300"></div>
+                    <div className="absolute inset-0 bg-scarlet clip-path-polygon group-hover:animate-glitch opacity-80 group-hover:opacity-100 transition-opacity"></div>
+                    <div className="absolute inset-0 bg-scarlet/20 blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+                    <div className="absolute inset-[2px] bg-black clip-path-polygon z-10 flex items-center justify-center">
+                        <span className="relative z-20 text-white font-bold font-cinematic tracking-widest text-xl group-hover:text-scarlet transition-colors duration-300 uppercase shadow-[0_0_15px_rgba(255,42,42,0.5)]">
+                            Start Registration
+                        </span>
+                    </div>
+                    {/* Corner Accents */}
+                    <div className="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-scarlet z-20 group-hover:scale-125 transition-transform duration-300"></div>
+                    <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-scarlet z-20 group-hover:scale-125 transition-transform duration-300"></div>
+                    <div className="absolute -top-1 -right-1 w-4 h-4 border-t-2 border-r-2 border-white/50 z-20 group-hover:border-scarlet transition-colors duration-300"></div>
+                    <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b-2 border-l-2 border-white/50 z-20 group-hover:border-scarlet transition-colors duration-300"></div>
                 </Link>
 
                 <Link
