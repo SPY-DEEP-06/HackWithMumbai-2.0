@@ -25,7 +25,7 @@ export default function Organizers() {
 
             <div className="max-w-7xl mx-auto relative z-10">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-cinematic text-white mb-4">THE COUNCIL</h2>
+                    <h2 className="text-3xl md:text-5xl font-cinematic text-white mb-4">THE ORGANIZERS</h2>
                     <p className="font-retro text-tva">"Authorized Variant Overseers"</p>
                 </div>
 
