@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { MessageCircle } from "lucide-react";
 import gsap from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
 
@@ -101,11 +102,7 @@ export default function Hero() {
                         <span className="font-cinematic font-bold tracking-[0.15em] text-sm md:text-xl text-white/90 drop-shadow-[0_0_5px_rgba(0,255,65,0.5)] group-hover:text-[#00ff41] group-hover:tracking-[0.2em] transition-all duration-300 uppercase whitespace-nowrap pt-1">
                             JOIN COMMUNITY
                         </span>
-                        {/* Animated Portal Icon */}
-                        <svg className="w-5 h-5 text-white/90 group-hover:text-[#00ff41] group-hover:rotate-180 transition-all duration-700 filter drop-shadow-[0_0_5px_#00ff41]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <circle cx="12" cy="12" r="10" strokeWidth="2" strokeDasharray="4 4" className="animate-[spin_4s_linear_infinite]" />
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v8m-4-4h8" className="opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        </svg>
+                        <MessageCircle className="w-5 h-5 text-white/90 group-hover:text-[#00ff41] group-hover:rotate-12 transition-all duration-300 filter drop-shadow-[0_0_5px_#00ff41]" />
                     </span>
                 </Link>
             </div>
