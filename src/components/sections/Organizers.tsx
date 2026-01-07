@@ -31,28 +31,29 @@ export default function Organizers() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {organizers.map((org, index) => (
-                        <div key={index} className="group relative bg-[#1a1a1a] rounded-lg overflow-hidden border border-white/5 hover:border-tva transition-all duration-300">
+                        <div key={index} className="group relative bg-[#0a0a0a] rounded-xl overflow-hidden border border-white/10 hover:border-tva/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(200,80,0,0.1)]">
                             {/* ID Badge Style Header */}
-                            <div className="bg-tva/10 p-4 border-b border-tva/20 flex justify-between items-center">
-                                <span className="font-retro text-xs text-tva">TVA ACCREDITED</span>
-                                <span className="font-retro text-xs text-white/50">{org.variantId}</span>
+                            <div className="bg-white/5 p-4 border-b border-white/5 flex justify-between items-center">
+                                <span className="font-retro text-xs text-tva tracking-wider">TVA ACCREDITED</span>
+                                <span className="font-retro text-xs text-white/30">{org.variantId}</span>
                             </div>
 
-                            <div className="p-6 text-center">
-                                <div className="w-24 h-24 mx-auto bg-gray-800 rounded-full mb-4 border-2 border-white/10 group-hover:border-tva transition-colors flex items-center justify-center overflow-hidden">
+                            <div className="p-8 text-center">
+                                <div className="w-24 h-24 mx-auto bg-[#050505] rounded-full mb-6 border border-white/10 group-hover:border-tva transition-colors flex items-center justify-center overflow-hidden relative">
+                                    <div className="absolute inset-0 bg-tva/5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                     {/* Placeholder Avatars */}
-                                    <span className="font-cinematic text-3xl text-white/20 group-hover:text-tva transition-colors">
+                                    <span className="font-cinematic text-4xl text-white/20 group-hover:text-tva transition-colors">
                                         {org.name.charAt(0)}
                                     </span>
                                 </div>
 
-                                <h3 className="text-xl font-bold font-cinematic text-white mb-1">{org.name}</h3>
-                                <p className="text-sm text-gray-400 mb-6">{org.role}</p>
+                                <h3 className="text-xl md:text-2xl font-bold font-cinematic text-white mb-2 tracking-wide">{org.name}</h3>
+                                <p className="text-sm font-retro text-gray-500 mb-8 uppercase tracking-widest">{org.role}</p>
 
                                 <Link
                                     href={`https://wa.me/${org.contact.replace(/[^0-9]/g, '')}`}
                                     target="_blank"
-                                    className="inline-flex items-center gap-2 px-4 py-2 bg-[#25D366]/10 text-[#25D366] rounded-full hover:bg-[#25D366] hover:text-white transition-all text-sm font-bold"
+                                    className="inline-flex items-center gap-2 px-6 py-2 bg-[#25D366]/5 border border-[#25D366]/20 text-[#25D366] rounded-full hover:bg-[#25D366] hover:text-white transition-all text-sm font-bold tracking-wide group-hover:shadow-[0_0_15px_rgba(37,211,102,0.2)]"
                                 >
                                     <MessageCircle size={16} />
                                     Chat
@@ -60,7 +61,7 @@ export default function Organizers() {
                             </div>
 
                             {/* Scanline overlay only on card */}
-                            <div className="absolute inset-0 bg-transparent pointer-events-none group-hover:bg-tva/5 transition-colors"></div>
+                            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.03] pointer-events-none group-hover:opacity-10 transition-opacity"></div>
                         </div>
                     ))}
                 </div>
