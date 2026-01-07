@@ -238,6 +238,7 @@ export default function Gallery() {
                         {/* Modal Close Button */}
                         <button
                             onClick={() => setSelectedArchive(null)}
+                            aria-label="Close details"
                             className="absolute top-4 right-4 z-50 text-white hover:text-scarlet transition-colors p-2 bg-black/50 rounded-full"
                         >
                             <X size={24} />
