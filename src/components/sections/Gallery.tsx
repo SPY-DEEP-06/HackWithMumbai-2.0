@@ -108,13 +108,16 @@ export default function Gallery() {
     // Lock body scroll when modal is open
     useEffect(() => {
         if (selectedArchive) {
+            document.documentElement.style.overflow = "hidden";
             document.body.style.overflow = "hidden";
         } else {
-            document.body.style.overflow = "unset";
+            document.documentElement.style.overflow = "";
+            document.body.style.overflow = "";
         }
 
         return () => {
-            document.body.style.overflow = "unset";
+            document.documentElement.style.overflow = "";
+            document.body.style.overflow = "";
         }
     }, [selectedArchive]);
 
@@ -267,7 +270,7 @@ export default function Gallery() {
                         </div>
 
                         {/* Right: Content Information */}
-                        <div className="w-full md:w-3/5 h-full overflow-y-auto p-8 md:p-12 bg-[#050505] custom-scrollbar">
+                        <div className="w-full md:w-3/5 h-full overflow-y-auto p-8 md:p-12 bg-[#050505] custom-scrollbar overscroll-contain">
 
                             {/* Briefing */}
                             <div className="mb-8">
