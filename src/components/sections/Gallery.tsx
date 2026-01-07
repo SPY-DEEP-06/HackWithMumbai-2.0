@@ -105,6 +105,19 @@ export default function Gallery() {
     const triggerRef = useRef<HTMLDivElement>(null);
     const [selectedArchive, setSelectedArchive] = useState<typeof archives[0] | null>(null);
 
+    // Lock body scroll when modal is open
+    useEffect(() => {
+        if (selectedArchive) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+
+        return () => {
+            document.body.style.overflow = "unset";
+        }
+    }, [selectedArchive]);
+
     useEffect(() => {
         const section = sectionRef.current;
 
