@@ -150,42 +150,67 @@ export default function Gallery() {
 
     useEffect(() => {
         const section = sectionRef.current;
+        const trigger = triggerRef.current;
 
-        if (section && triggerRef.current) {
-            const totalPanels = archives.length + 1; // Title + Images
-            const scrollWidth = (totalPanels - 1) * 100;
+        if (section && trigger) {
+            const ctx = gsap.context(() => {
+                ScrollTrigger.matchMedia({
+                    // Desktop: Horizontal Scroll
+                    "(min-width: 768px)": function () {
+                        const totalPanels = archives.length + 1; // Title + Images
+                        const scrollWidth = (totalPanels - 1) * 100;
 
-            const pin = gsap.fromTo(section,
-                { translateX: 0 },
-                {
-                    translateX: `-${scrollWidth}vw`, // Use calculated scroll width
-                    ease: "none",
-                    duration: 1,
-                    scrollTrigger: {
-                        trigger: triggerRef.current,
-                        start: "top top",
-                        end: `${totalPanels * 1000} top`,
-                        scrub: 0.6,
-                        pin: true,
+                        gsap.fromTo(section,
+                            { xPercent: 0 },
+                            {
+                                xPercent: -100 * (totalPanels - 1) / totalPanels, // Move by percentage of total width
+                                ease: "none",
+                                scrollTrigger: {
+                                    trigger: trigger,
+                                    pin: true,
+                                    scrub: 1,
+                                    snap: 1 / (totalPanels - 1),
+                                    start: "top top",
+                                    end: () => "+=" + section.offsetWidth,
+                                    invalidateOnRefresh: true,
+                                }
+                            }
+                        );
+                    },
+                    // Mobile: Vertical Stack (Native Scroll - No GSAP Pinning needed usually, or simple fade-ins)
+                    "(max-width: 767px)": function () {
+                        // Optional: Add simple fade-in animations for mobile cards as they scroll into view
+                        const panels = gsap.utils.toArray(".mobile-panel");
+                        panels.forEach((panel: any) => {
+                            gsap.from(panel, {
+                                opacity: 0,
+                                y: 50,
+                                duration: 0.8,
+                                scrollTrigger: {
+                                    trigger: panel,
+                                    start: "top 80%",
+                                    toggleActions: "play none none reverse"
+                                }
+                            });
+                        });
                     }
-                }
-            );
-            return () => {
-                pin.kill();
-            };
+                });
+            }, trigger); // Scope to trigger component
+
+            return () => ctx.revert(); // Cleanup
         }
     }, []);
 
     return (
-        <section className="overflow-hidden bg-black relative z-20">
-            <div ref={triggerRef}>
+        <section className="bg-black relative z-20 overflow-x-hidden">
+            <div ref={triggerRef} className="relative">
                 <div
                     ref={sectionRef}
-                    className="h-screen flex flex-row relative w-[600vw]"
+                    className="flex flex-col md:flex-row relative w-full md:w-[600vw] h-auto md:h-screen"
                 >
 
                     {/* Title Panel */}
-                    <div className="w-screen h-full flex flex-col items-center justify-center px-4 md:px-20 border-r border-white/10 relative text-center">
+                    <div className="w-full md:w-screen h-screen flex flex-col items-center justify-center px-4 md:px-20 border-b md:border-b-0 md:border-r border-white/10 relative text-center mobile-panel">
                         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20"></div>
                         <h2 className="text-5xl md:text-7xl font-cinematic text-transparent bg-clip-text bg-gradient-to-r from-tva to-scarlet mb-4 md:mb-8 font-bold tracking-wider">
                             PAST ARCHIVES
@@ -194,16 +219,18 @@ export default function Gallery() {
                             Recovered footage from previous timelines.
                         </p>
                         <div className="mt-8 md:mt-12 animate-bounce text-loki text-sm md:text-base">
-                            Scroll to Access Database &rarr;
+                            {/* Different text for mobile vs desktop */}
+                            <span className="md:hidden">Scroll Down to Access Database &darr;</span>
+                            <span className="hidden md:inline">Scroll to Access Database &rarr;</span>
                         </div>
                     </div>
 
                     {/* Archive Panels */}
                     {archives.map((archive, index) => (
-                        <div key={index} className="w-screen h-full flex items-center justify-center p-4 md:p-20 border-r border-white/5 relative bg-[#050505]">
+                        <div key={index} className="w-full md:w-screen h-screen flex items-center justify-center p-4 md:p-20 border-b md:border-b-0 md:border-r border-white/5 relative bg-[#050505] mobile-panel">
 
-                            {/* Card Container */}
-                            <div className="group relative w-full max-w-4xl bg-[#0a0a0a] border border-white/10 hover:border-scarlet/50 transition-all duration-500 overflow-hidden flex flex-col md:flex-row h-[70vh] md:h-[60vh]">
+                            {/* Card Container - Adjusted height for mobile */}
+                            <div className="group relative w-full max-w-4xl bg-[#0a0a0a] border border-white/10 hover:border-scarlet/50 transition-all duration-500 overflow-hidden flex flex-col md:flex-row h-[85vh] md:h-[60vh] rounded-xl md:rounded-none">
 
                                 {/* Image Half */}
                                 <div className="relative w-full md:w-2/3 h-1/2 md:h-full overflow-hidden">
@@ -232,7 +259,7 @@ export default function Gallery() {
                                             {archive.title}
                                         </h3>
                                         <div className="w-12 h-1 bg-white/20 group-hover:bg-scarlet transition-colors mb-6"></div>
-                                        <p className="font-retro text-xs text-gray-500 leading-relaxed">
+                                        <p className="font-retro text-xs text-gray-500 leading-relaxed hidden sm:block">
                                             &gt; ACCESSING_MEMORY_BLOCK...<br />
                                             &gt; DECRYPTING_VISUALS...<br />
                                             &gt; STATUS: RESTORED

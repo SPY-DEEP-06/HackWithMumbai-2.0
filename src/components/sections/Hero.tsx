@@ -77,7 +77,7 @@ export default function Hero() {
             <div className="flex flex-col md:flex-row gap-6 mt-16 z-20">
                 <Link
                     href="https://unstop.com/o/bXKrsvy?lb=0AZaud6X&utm_medium=Share&utm_source=deepagho48277&utm_campaign=Online_coding_challenge"
-                    className="group relative px-12 py-5 bg-transparent inline-block min-w-max transition-transform hover:scale-105 duration-500"
+                    className="group relative px-8 md:px-12 py-5 bg-transparent inline-block min-w-max transition-transform hover:scale-105 duration-500"
                 >
                     {/* Stranger Things Red Glow Container */}
                     <div className="absolute inset-0 border border-[#ff1100] rounded hover:rounded-xl shadow-[0_0_20px_rgba(255,17,0,0.4),inset_0_0_10px_rgba(255,17,0,0.1)] group-hover:shadow-[0_0_40px_rgba(255,17,0,0.6),inset_0_0_20px_rgba(255,17,0,0.2)] transition-all duration-500 bg-black/90 backdrop-blur-md"></div>
@@ -92,7 +92,7 @@ export default function Hero() {
 
                 <Link
                     href="https://chat.whatsapp.com/G6MasRM8AK08WJq7KDifNq"
-                    className="group relative px-12 py-5 bg-transparent inline-block min-w-max transition-transform hover:scale-105 duration-500"
+                    className="group relative px-8 md:px-12 py-5 bg-transparent inline-block min-w-max transition-transform hover:scale-105 duration-500"
                 >
                     {/* Loki/Time Stone Green Glow Container */}
                     <div className="absolute inset-0 border border-[#00ff41] rounded hover:rounded-xl shadow-[0_0_20px_rgba(0,255,65,0.3),inset_0_0_10px_rgba(0,255,65,0.1)] group-hover:shadow-[0_0_40px_rgba(0,255,65,0.5),inset_0_0_20px_rgba(0,255,65,0.2)] transition-all duration-500 bg-black/90 backdrop-blur-md"></div>
