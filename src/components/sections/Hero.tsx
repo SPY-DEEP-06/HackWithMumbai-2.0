@@ -74,20 +74,24 @@ export default function Hero() {
             <div className="flex flex-col md:flex-row gap-6 mt-12">
                 <Link
                     href="https://unstop.com/o/bXKrsvy?lb=0AZaud6X&utm_medium=Share&utm_source=deepagho48277&utm_campaign=Online_coding_challenge"
-                    className="group relative px-10 py-5 bg-transparent overflow-visible inline-block min-w-max"
+                    className="group relative px-12 py-5 bg-transparent inline-block min-w-max transition-transform hover:scale-105 duration-500"
                 >
-                    <div className="absolute inset-0 bg-scarlet clip-path-polygon group-hover:animate-glitch opacity-80 group-hover:opacity-100 transition-opacity"></div>
-                    <div className="absolute inset-0 bg-scarlet/20 blur-xl group-hover:blur-2xl transition-all duration-300"></div>
-                    <div className="absolute inset-[2px] bg-black clip-path-polygon z-10 flex items-center justify-center px-4">
-                        <span className="relative z-20 text-white font-bold font-cinematic tracking-widest text-sm md:text-xl group-hover:text-scarlet transition-colors duration-300 uppercase shadow-[0_0_15px_rgba(255,42,42,0.5)] whitespace-nowrap pt-1">
+                    {/* Stranger Things Red Glow Container */}
+                    <div className="absolute inset-0 border-2 border-[#ff1100] rounded-sm shadow-[0_0_15px_rgba(255,17,0,0.5),inset_0_0_10px_rgba(255,17,0,0.2)] group-hover:shadow-[0_0_30px_rgba(255,17,0,0.8),inset_0_0_20px_rgba(255,17,0,0.4)] transition-shadow duration-500 bg-black/80 backdrop-blur-sm"></div>
+
+                    {/* Atmospheric Fog Effect inside button */}
+                    <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')] opacity-30 mix-blend-color-dodge"></div>
+
+                    {/* Text content */}
+                    <div className="relative z-10 flex items-center justify-center px-4">
+                        <span className="font-cinematic font-bold tracking-[0.2em] text-sm md:text-2xl text-transparent bg-clip-text bg-gradient-to-b from-[#ff4433] to-[#990000] drop-shadow-[0_0_8px_rgba(255,0,0,0.8)] group-hover:drop-shadow-[0_0_15px_rgba(255,0,0,1)] transition-all duration-300 uppercase whitespace-nowrap pt-1">
                             Start Registration
                         </span>
                     </div>
-                    {/* Corner Accents */}
-                    <div className="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-scarlet z-20 group-hover:scale-125 transition-transform duration-300"></div>
-                    <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-scarlet z-20 group-hover:scale-125 transition-transform duration-300"></div>
-                    <div className="absolute -top-1 -right-1 w-4 h-4 border-t-2 border-r-2 border-white/50 z-20 group-hover:border-scarlet transition-colors duration-300"></div>
-                    <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b-2 border-l-2 border-white/50 z-20 group-hover:border-scarlet transition-colors duration-300"></div>
+
+                    {/* Upside Down Particles (Corner flickers) */}
+                    <div className="absolute top-0 right-0 w-2 h-2 bg-[#ff1100] rounded-full shadow-[0_0_10px_#ff1100] opacity-0 group-hover:opacity-100 animate-ping"></div>
+                    <div className="absolute bottom-0 left-0 w-2 h-2 bg-[#ff1100] rounded-full shadow-[0_0_10px_#ff1100] opacity-0 group-hover:opacity-100 animate-ping delay-300"></div>
                 </Link>
 
                 <Link
