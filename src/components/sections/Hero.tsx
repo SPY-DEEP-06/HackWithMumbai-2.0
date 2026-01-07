@@ -96,13 +96,22 @@ export default function Hero() {
 
                 <Link
                     href="https://chat.whatsapp.com/G6MasRM8AK08WJq7KDifNq"
-                    className="group relative px-8 py-4 bg-transparent border border-loki text-loki font-bold font-cinematic tracking-wider hover:bg-loki/10 transition-colors"
+                    className="group relative px-12 py-5 bg-transparent inline-block min-w-max transition-transform hover:scale-105 duration-500"
                 >
-                    <span className="flex items-center gap-2">
-                        <span>JOIN COMMUNITY</span>
-                        {/* Simple Portal Icon SVG */}
-                        <svg className="w-5 h-5 group-hover:rotate-180 transition-transform duration-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <circle cx="12" cy="12" r="10" strokeWidth="2" strokeDasharray="4 4" />
+                    {/* Loki/Time Stone Green Glow Container */}
+                    <div className="absolute inset-0 border-2 border-[#00ff41] rounded-sm shadow-[0_0_15px_rgba(0,255,65,0.3),inset_0_0_10px_rgba(0,255,65,0.1)] group-hover:shadow-[0_0_30px_rgba(0,255,65,0.6),inset_0_0_20px_rgba(0,255,65,0.3)] transition-shadow duration-500 bg-black/80 backdrop-blur-sm"></div>
+
+                    {/* Matrix Digital Rain Texture */}
+                    <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/matrix.png')] opacity-20 mix-blend-screen"></div>
+
+                    <span className="relative z-10 flex items-center justify-center gap-3 px-4">
+                        <span className="font-cinematic font-bold tracking-[0.2em] text-sm md:text-2xl text-[#00ff41] drop-shadow-[0_0_5px_rgba(0,255,65,0.8)] group-hover:text-white group-hover:drop-shadow-[0_0_10px_rgba(0,255,65,1)] transition-all duration-300 uppercase whitespace-nowrap pt-1">
+                            JOIN COMMUNITY
+                        </span>
+                        {/* Animated Portal Icon */}
+                        <svg className="w-6 h-6 text-[#00ff41] group-hover:text-white group-hover:rotate-180 transition-all duration-700 filter drop-shadow-[0_0_5px_#00ff41]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <circle cx="12" cy="12" r="10" strokeWidth="2" strokeDasharray="4 4" className="animate-[spin_4s_linear_infinite]" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v8m-4-4h8" className="opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         </svg>
                     </span>
                 </Link>
