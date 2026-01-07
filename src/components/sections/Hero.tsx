@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, MapPin, Calendar } from "lucide-react";
 import gsap from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
 
@@ -96,7 +96,25 @@ export default function Hero() {
 
             <CountdownTimer />
 
-            <div className="flex flex-col md:flex-row gap-6 mt-16 z-20">
+            {/* Hackathon Protocol Details */}
+            <div className="flex flex-col items-center mt-8 gap-2 z-20">
+                <h3 className="font-retro text-lg md:text-xl tracking-widest">
+                    <span className="text-cyan-400">30 HOUR</span> <span className="text-white">HACKATHON PROTOCOL</span>
+                </h3>
+                <div className="flex items-center gap-4 text-gray-400 font-retro text-[10px] md:text-sm tracking-wider">
+                    <div className="flex items-center gap-2">
+                        <MapPin size={14} className="text-scarlet" />
+                        <span>BVUDET, NAVI MUMBAI</span>
+                    </div>
+                    <span className="text-gray-600">|</span>
+                    <div className="flex items-center gap-2">
+                        <Calendar size={14} className="text-loki" />
+                        <span>7TH - 8TH FEB</span>
+                    </div>
+                </div>
+            </div>
+
+            <div className="flex flex-col md:flex-row gap-6 mt-12 z-20">
                 <Link
                     href="https://unstop.com/o/bXKrsvy?lb=0AZaud6X&utm_medium=Share&utm_source=deepagho48277&utm_campaign=Online_coding_challenge"
                     className="group relative px-6 md:px-10 py-3 md:py-4 bg-transparent inline-block min-w-max transition-all duration-300 transform hover:scale-105"
