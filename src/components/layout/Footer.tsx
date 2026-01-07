@@ -21,6 +21,18 @@ export default function Footer() {
                 <p className="font-retro text-xs text-gray-700">
                     &copy; 2026 HackWithMumbai 2.0. All Timeline Variants Reserved.
                 </p>
+
+                <div className="mt-8 pt-8 border-t border-white/5 w-full max-w-md mx-auto flex flex-col items-center">
+                    <p className="font-retro text-[10px] text-gray-600 uppercase tracking-widest mb-3">Designed & Developed by</p>
+                    <a href="https://adapts.co" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 group">
+                        <img
+                            src="/adapts_logo.png"
+                            alt="ADAPTS.CO"
+                            className="h-10 w-auto object-contain filter group-hover:brightness-125 transition-all"
+                        />
+                        <span className="font-cinematic text-xl text-tva font-bold tracking-widest group-hover:text-scarlet transition-colors">ADAPTS.CO</span>
+                    </a>
+                </div>
             </div>
         </footer>
     );
