@@ -43,6 +43,12 @@ export default {
                         filter: "none",
                     },
                 },
+                scan: {
+                    "0%, 100%": { top: "0%", opacity: "0" },
+                    "10%": { opacity: "1" },
+                    "90%": { opacity: "1" },
+                    "50%": { top: "100%" },
+                }
             },
         },
     },
