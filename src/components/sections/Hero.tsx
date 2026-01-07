@@ -52,6 +52,18 @@ export default function Hero() {
     return (
         <section className="relative min-h-screen flex flex-col items-center justify-center text-center p-4 overflow-hidden z-10">
 
+            {/* Organizer Logo - Top Left */}
+            <div className="absolute top-4 left-4 z-50 md:top-8 md:left-8">
+                <div className="relative group">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-red-900 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+                    <img
+                        src="/organizer_logo.jpg"
+                        alt="Organizing Committee"
+                        className="relative w-12 h-12 md:w-16 md:h-16 rounded-full object-cover border-2 border-red-500/50 shadow-[0_0_15px_rgba(255,0,0,0.5)] animate-pulse-slow"
+                    />
+                </div>
+            </div>
+
             {/* Live Registration Indicator */}
             <div className="absolute top-5 md:top-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 animate-pulse">
                 <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-[#ff0000] shadow-[0_0_10px_#ff0000] animate-ping"></div>
