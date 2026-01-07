@@ -93,10 +93,11 @@ export default function About() {
                             <div className="absolute inset-16 border-[2px] border-scarlet/50 rounded-full shadow-[0_0_15px_rgba(255,42,42,0.4)]"></div>
 
                             {/* Rotating Radar Sweep */}
-                            <div className="absolute inset-0 rounded-full animate-radar origin-center">
-                                <div className="w-full h-full bg-[conic-gradient(from_0deg,transparent_0deg,rgba(255,42,42,0.1)_60deg,rgba(255,42,42,0.5)_90deg,transparent_91deg)] rounded-full"></div>
+                            {/* Rotating Radar Sweep */}
+                            <div className="absolute inset-0 rounded-full animate-[spin_4s_linear_infinite] z-10">
+                                <div className="w-full h-full bg-[conic-gradient(from_0deg,transparent_0deg,rgba(255,42,42,0.1)_60deg,rgba(255,42,42,0.6)_90deg,transparent_90deg)] rounded-full origin-center"></div>
                                 {/* Leading Edge Glow */}
-                                <div className="absolute top-0 left-1/2 w-[2px] h-1/2 bg-scarlet/80 shadow-[0_0_20px_#ff2a2a] origin-bottom transform -translate-x-1/2"></div>
+                                <div className="absolute top-0 left-1/2 w-[2px] h-1/2 bg-scarlet/80 shadow-[0_0_20px_#ff2a2a] origin-bottom -translate-x-1/2"></div>
                             </div>
 
                             {/* Center Core */}
