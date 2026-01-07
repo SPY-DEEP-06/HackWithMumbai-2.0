@@ -53,7 +53,7 @@ export default function Hero() {
 
             {/* Glitch Overlay for Text */}
             <div className="relative mb-8 group">
-                <h2 className="text-loki font-retro tracking-[0.3em] text-lg md:text-xl border border-loki/30 bg-black/60 backdrop-blur-md px-6 py-2 rounded-full shadow-[0_0_20px_rgba(0,255,65,0.2)] group-hover:shadow-[0_0_35px_rgba(0,255,65,0.4)] transition-all duration-500">
+                <h2 className="text-loki font-retro tracking-[0.2em] text-[10px] md:text-xs border border-loki/30 bg-black/60 backdrop-blur-md px-4 py-1.5 rounded-full shadow-[0_0_15px_rgba(0,255,65,0.2)] group-hover:shadow-[0_0_25px_rgba(0,255,65,0.4)] transition-all duration-500">
                     &lt; NATIONAL LEVEL HACKATHON /&gt;
                 </h2>
             </div>
