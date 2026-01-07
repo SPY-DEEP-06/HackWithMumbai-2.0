@@ -77,14 +77,14 @@ export default function Hero() {
             <div className="flex flex-col md:flex-row gap-6 mt-16 z-20">
                 <Link
                     href="https://unstop.com/o/bXKrsvy?lb=0AZaud6X&utm_medium=Share&utm_source=deepagho48277&utm_campaign=Online_coding_challenge"
-                    className="group relative px-8 md:px-12 py-5 bg-transparent inline-block min-w-max transition-transform hover:scale-105 duration-500"
+                    className="group relative px-6 md:px-10 py-3 md:py-4 bg-transparent inline-block min-w-max transition-all duration-300 transform hover:scale-105"
                 >
                     {/* Stranger Things Red Glow Container */}
-                    <div className="absolute inset-0 border border-[#ff1100] rounded hover:rounded-xl shadow-[0_0_20px_rgba(255,17,0,0.4),inset_0_0_10px_rgba(255,17,0,0.1)] group-hover:shadow-[0_0_40px_rgba(255,17,0,0.6),inset_0_0_20px_rgba(255,17,0,0.2)] transition-all duration-500 bg-black/90 backdrop-blur-md"></div>
+                    <div className="absolute inset-0 border border-[#ff1100]/80 rounded hover:rounded-lg shadow-[0_0_15px_rgba(255,17,0,0.3),inset_0_0_5px_rgba(255,17,0,0.1)] group-hover:shadow-[0_0_30px_rgba(255,17,0,0.6),inset_0_0_15px_rgba(255,17,0,0.3)] transition-all duration-300 bg-black/80 backdrop-blur-md"></div>
 
                     {/* Text content */}
-                    <div className="relative z-10 flex items-center justify-center px-4">
-                        <span className="font-cinematic font-bold tracking-[0.2em] text-sm md:text-2xl text-white drop-shadow-[0_0_5px_rgba(255,0,0,0.5)] group-hover:text-[#ff1100] group-hover:drop-shadow-[0_0_15px_rgba(255,0,0,1)] transition-all duration-300 uppercase whitespace-nowrap pt-1">
+                    <div className="relative z-10 flex items-center justify-center px-2">
+                        <span className="font-cinematic font-bold tracking-[0.15em] text-sm md:text-xl text-white/90 drop-shadow-[0_0_5px_rgba(255,0,0,0.5)] group-hover:text-[#ff1100] group-hover:tracking-[0.2em] transition-all duration-300 uppercase whitespace-nowrap pt-1">
                             Start Registration
                         </span>
                     </div>
@@ -92,17 +92,17 @@ export default function Hero() {
 
                 <Link
                     href="https://chat.whatsapp.com/G6MasRM8AK08WJq7KDifNq"
-                    className="group relative px-8 md:px-12 py-5 bg-transparent inline-block min-w-max transition-transform hover:scale-105 duration-500"
+                    className="group relative px-6 md:px-10 py-3 md:py-4 bg-transparent inline-block min-w-max transition-all duration-300 transform hover:scale-105"
                 >
                     {/* Loki/Time Stone Green Glow Container */}
-                    <div className="absolute inset-0 border border-[#00ff41] rounded hover:rounded-xl shadow-[0_0_20px_rgba(0,255,65,0.3),inset_0_0_10px_rgba(0,255,65,0.1)] group-hover:shadow-[0_0_40px_rgba(0,255,65,0.5),inset_0_0_20px_rgba(0,255,65,0.2)] transition-all duration-500 bg-black/90 backdrop-blur-md"></div>
+                    <div className="absolute inset-0 border border-[#00ff41]/80 rounded hover:rounded-lg shadow-[0_0_15px_rgba(0,255,65,0.3),inset_0_0_5px_rgba(0,255,65,0.1)] group-hover:shadow-[0_0_30px_rgba(0,255,65,0.5),inset_0_0_15px_rgba(0,255,65,0.2)] transition-all duration-300 bg-black/80 backdrop-blur-md"></div>
 
-                    <span className="relative z-10 flex items-center justify-center gap-3 px-4">
-                        <span className="font-cinematic font-bold tracking-[0.2em] text-sm md:text-2xl text-white drop-shadow-[0_0_5px_rgba(0,255,65,0.5)] group-hover:text-[#00ff41] group-hover:drop-shadow-[0_0_15px_rgba(0,255,65,1)] transition-all duration-300 uppercase whitespace-nowrap pt-1">
+                    <span className="relative z-10 flex items-center justify-center gap-3 px-2">
+                        <span className="font-cinematic font-bold tracking-[0.15em] text-sm md:text-xl text-white/90 drop-shadow-[0_0_5px_rgba(0,255,65,0.5)] group-hover:text-[#00ff41] group-hover:tracking-[0.2em] transition-all duration-300 uppercase whitespace-nowrap pt-1">
                             JOIN COMMUNITY
                         </span>
                         {/* Animated Portal Icon */}
-                        <svg className="w-6 h-6 text-white group-hover:text-[#00ff41] group-hover:rotate-180 transition-all duration-700 filter drop-shadow-[0_0_5px_#00ff41]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-5 h-5 text-white/90 group-hover:text-[#00ff41] group-hover:rotate-180 transition-all duration-700 filter drop-shadow-[0_0_5px_#00ff41]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <circle cx="12" cy="12" r="10" strokeWidth="2" strokeDasharray="4 4" className="animate-[spin_4s_linear_infinite]" />
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v8m-4-4h8" className="opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         </svg>
