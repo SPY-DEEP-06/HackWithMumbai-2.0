@@ -1,3 +1,5 @@
+import { Instagram, Linkedin } from "lucide-react";
+
 export default function Footer() {
     return (
         <footer className="relative py-12 bg-black text-center border-t border-white/10 overflow-hidden">
@@ -10,12 +12,12 @@ export default function Footer() {
                 </h2>
 
                 <div className="flex gap-6 mb-8">
-                    {/* Social Placeholders */}
-                    {['Instagram', 'LinkedIn', 'Twitter'].map((social) => (
-                        <a key={social} href="#" className="font-retro text-sm text-gray-600 hover:text-tva transition-colors uppercase">
-                            {social}
-                        </a>
-                    ))}
+                    <a href="https://www.instagram.com/hwi.bvudet_nm?igsh=MWxiaWd4cGlubGswaw==" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-scarlet transition-colors">
+                        <Instagram size={20} />
+                    </a>
+                    <a href="https://www.linkedin.com/company/hackwithindia-bvudet-nm-chapter/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-loki transition-colors">
+                        <Linkedin size={20} />
+                    </a>
                 </div>
 
                 <p className="font-retro text-xs text-gray-700">

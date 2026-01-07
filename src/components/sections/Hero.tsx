@@ -53,7 +53,7 @@ export default function Hero() {
         <section className="relative min-h-screen flex flex-col items-center justify-center text-center p-4 overflow-hidden z-10">
 
             {/* Live Registration Indicator */}
-            <div className="absolute top-5 md:top-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 px-4 py-1.5 rounded-full border border-red-500/30 bg-black/40 backdrop-blur-sm">
+            <div className="absolute top-5 md:top-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 animate-pulse">
                 <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-[#ff0000] shadow-[0_0_10px_#ff0000] animate-ping"></div>
                 <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-[#ff0000] shadow-[0_0_10px_#ff0000] absolute ml-0"></div>
                 <span className="font-retro text-[10px] md:text-xs text-[#ff0000] tracking-[0.2em] shadow-[#ff0000] drop-shadow-[0_0_8px_rgba(255,0,0,0.8)]">
