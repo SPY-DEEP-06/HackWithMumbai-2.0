@@ -228,7 +228,7 @@ export default function Gallery() {
                                 {/* Content Half */}
                                 <div className="w-full md:w-1/3 h-1/2 md:h-full p-6 md:p-8 flex flex-col justify-between relative bg-dotted-spacing-4 bg-dotted-white/[0.05]">
                                     <div>
-                                        <h3 className="text-2xl md:text-3xl font-cinematic text-white mb-4 group-hover:text-scarlet transition-colors leading-tight">
+                                        <h3 className="text-xl md:text-2xl lg:text-3xl font-cinematic text-white mb-4 group-hover:text-scarlet transition-colors leading-tight break-words hyphens-auto">
                                             {archive.title}
                                         </h3>
                                         <div className="w-12 h-1 bg-white/20 group-hover:bg-scarlet transition-colors mb-6"></div>
