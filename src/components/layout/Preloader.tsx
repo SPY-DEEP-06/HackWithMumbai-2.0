@@ -33,7 +33,8 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
             const currentMessage = messages[currentMessageIndex];
 
             if (charIndex < currentMessage.length) {
-                setText((prev) => prev + currentMessage.charAt(charIndex));
+                // Safe way to set text without relying on previous state accumulation potentially missing a beat
+                setText(currentMessage.substring(0, charIndex + 1));
                 charIndex++;
                 timeout = setTimeout(typeWriter, 50); // Typing speed
             } else {
