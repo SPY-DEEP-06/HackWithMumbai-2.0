@@ -35,7 +35,7 @@ function CountdownTimer() {
     }, []);
 
     return (
-        <div className="flex gap-3 md:gap-8 font-retro text-tva text-xl md:text-4xl mt-6 md:mt-8 flex-wrap justify-center">
+        <div className="flex gap-3 md:gap-8 font-retro text-tva text-xl md:text-4xl flex-wrap justify-center">
             {Object.entries(timeLeft).map(([unit, value]) => (
                 <div key={unit} className="flex flex-col items-center min-w-[60px] md:min-w-[80px]">
                     <div className="bg-black/80 border border-tva/50 p-2 md:p-4 rounded shadow-[0_0_10px_rgba(255,140,0,0.3)] backdrop-blur-sm w-full">
@@ -90,14 +90,16 @@ export default function Hero() {
                 <div className="absolute -inset-10 bg-gradient-to-r from-scarlet/20 via-transparent to-loki/20 blur-3xl opacity-30 animate-pulse pointer-events-none"></div>
             </div>
 
-            <p className="max-w-xl mx-auto text-gray-200 mt-8 text-lg md:text-2xl font-light tracking-wide drop-shadow-md">
+            <p className="max-w-xl mx-auto text-gray-200 mt-8 md:mt-12 text-lg md:text-2xl font-light tracking-wide drop-shadow-md">
                 Enter the Multiverse. Build the Future. Disrupt Reality.
             </p>
 
-            <CountdownTimer />
+            <div className="mt-8 md:mt-12 w-full flex justify-center">
+                <CountdownTimer />
+            </div>
 
             {/* Hackathon Protocol Details */}
-            <div className="flex flex-col items-center mt-8 gap-2 z-20">
+            <div className="flex flex-col items-center mt-8 md:mt-14 gap-2 z-20">
                 <h3 className="font-retro text-lg md:text-xl tracking-widest">
                     <span className="text-cyan-400">30 HOUR</span> <span className="text-white">HACKATHON PROTOCOL</span>
                 </h3>
@@ -114,7 +116,7 @@ export default function Hero() {
                 </div>
             </div>
 
-            <div className="flex flex-col md:flex-row gap-6 mt-12 z-20">
+            <div className="flex flex-col md:flex-row gap-6 mt-12 md:mt-20 z-20">
                 <Link
                     href="https://unstop.com/o/bXKrsvy?lb=0AZaud6X&utm_medium=Share&utm_source=deepagho48277&utm_campaign=Online_coding_challenge"
                     className="group relative px-6 md:px-10 py-3 md:py-4 bg-transparent inline-block min-w-max transition-all duration-300 transform hover:scale-105"
