@@ -52,8 +52,17 @@ export default function Hero() {
     return (
         <section className="relative min-h-screen flex flex-col items-center justify-center text-center p-4 overflow-hidden z-10">
 
+            {/* Live Registration Indicator */}
+            <div className="absolute top-10 md:top-20 flex items-center gap-2 px-4 py-1.5 rounded-full border border-red-500/30 bg-black/40 backdrop-blur-sm animate-pulse">
+                <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-[#ff0000] shadow-[0_0_10px_#ff0000] animate-ping"></div>
+                <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-[#ff0000] shadow-[0_0_10px_#ff0000] absolute"></div>
+                <span className="font-retro text-[10px] md:text-xs text-[#ff0000] tracking-[0.2em] shadow-[#ff0000] drop-shadow-[0_0_8px_rgba(255,0,0,0.8)]">
+                    LIVE REGISTRATION
+                </span>
+            </div>
+
             {/* Glitch Overlay for Text */}
-            <div className="relative mb-8 group">
+            <div className="relative mb-8 group mt-16 md:mt-0">
                 <h2 className="text-loki font-retro tracking-[0.2em] text-[10px] md:text-xs border border-loki/30 bg-black/60 backdrop-blur-md px-4 py-1.5 rounded-full shadow-[0_0_15px_rgba(0,255,65,0.2)] group-hover:shadow-[0_0_25px_rgba(0,255,65,0.4)] transition-all duration-500">
                     &lt; NATIONAL LEVEL HACKATHON /&gt;
                 </h2>
