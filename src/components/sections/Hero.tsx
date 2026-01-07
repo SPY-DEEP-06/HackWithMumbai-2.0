@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { MessageCircle, MapPin, Calendar } from "lucide-react";
 import gsap from "gsap";
@@ -49,17 +49,49 @@ function CountdownTimer() {
 }
 
 export default function Hero() {
+    const [isPlaying, setIsPlaying] = useState(false);
+    const audioRef = useRef<HTMLAudioElement | null>(null);
+
+    const toggleAudio = () => {
+        if (audioRef.current) {
+            if (isPlaying) {
+                audioRef.current.pause();
+            } else {
+                audioRef.current.play();
+            }
+            setIsPlaying(!isPlaying);
+        }
+    };
+
+    useEffect(() => {
+        // Attempt autoplay on mount
+        if (audioRef.current) {
+            audioRef.current.volume = 0.5; // Set reasonable volume
+            const playPromise = audioRef.current.play();
+            if (playPromise !== undefined) {
+                playPromise
+                    .then(() => setIsPlaying(true))
+                    .catch((error: unknown) => {
+                        console.log("Autoplay prevented:", error);
+                        setIsPlaying(false);
+                    });
+            }
+        }
+    }, []);
+
     return (
         <section className="relative min-h-screen flex flex-col items-center justify-center text-center p-4 overflow-hidden z-10">
+            {/* Background Music */}
+            <audio ref={audioRef} src="/bgmusic/bgmusic.mp3" loop />
 
             {/* Organizer Logo - Top Left */}
-            <div className="absolute top-4 left-4 z-50 md:top-8 md:left-8">
+            <div className="absolute top-4 left-4 z-50 md:top-8 md:left-8 cursor-pointer" onClick={toggleAudio}>
                 <div className="relative group">
-                    <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-red-900 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+                    <div className={`absolute -inset-1 bg-gradient-to-r from-red-600 to-red-900 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt ${isPlaying ? 'animate-pulse' : ''}`}></div>
                     <img
                         src="/organizer_logo.jpg"
                         alt="Organizing Committee"
-                        className="relative w-12 h-12 md:w-16 md:h-16 rounded-full object-cover border-2 border-red-500/50 shadow-[0_0_15px_rgba(255,0,0,0.5)] animate-pulse-slow"
+                        className={`relative w-12 h-12 md:w-16 md:h-16 rounded-full object-cover border-2 border-red-500/50 shadow-[0_0_15px_rgba(255,0,0,0.5)] transition-all duration-700 ${isPlaying ? 'animate-[spin_4s_linear_infinite]' : ''}`}
                     />
                 </div>
             </div>
