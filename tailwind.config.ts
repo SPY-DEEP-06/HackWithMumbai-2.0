@@ -20,10 +20,7 @@ export default {
                 "cinematic": ["var(--font-cinematic)", "serif"],
                 "retro": ["var(--font-retro)", "monospace"],
             },
-            animation: {
-                "glitch": "glitch 1s linear infinite",
-                "flicker": "flicker 2s linear infinite",
-            },
+
             keyframes: {
                 glitch: {
                     "0%": { clipPath: "inset(40% 0 61% 0)", transform: "translate(-2px, 2px)" },
@@ -48,7 +45,22 @@ export default {
                     "10%": { opacity: "1" },
                     "90%": { opacity: "1" },
                     "50%": { top: "100%" },
+                },
+                "radar-spin": {
+                    "0%": { transform: "rotate(0deg)" },
+                    "100%": { transform: "rotate(360deg)" },
+                },
+                "pulse-slow": {
+                    "0%, 100%": { opacity: "0.4", transform: "scale(1)" },
+                    "50%": { opacity: "0.8", transform: "scale(1.1)" },
                 }
+            },
+            animation: {
+                "glitch": "glitch 1s linear infinite",
+                "flicker": "flicker 2s linear infinite",
+                "scan": "scan 3s ease-in-out infinite",
+                "radar": "radar-spin 4s linear infinite",
+                "pulse-slow": "pulse-slow 3s ease-in-out infinite",
             },
         },
     },

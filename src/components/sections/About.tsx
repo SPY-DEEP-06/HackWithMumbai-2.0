@@ -85,18 +85,29 @@ export default function About() {
                         </div>
 
                         {/* Sanctum/Eye Symbol */}
-                        <div className="relative w-48 h-48 md:w-64 md:h-64 opacity-50">
-                            <div className="absolute inset-0 border-4 border-scarlet/20 rounded-full animate-[spin_10s_linear_infinite]"></div>
-                            <div className="absolute inset-4 border-2 border-scarlet/40 rounded-full"></div>
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="w-full h-[2px] bg-scarlet/50"></div>
-                                <div className="absolute h-full w-[2px] bg-scarlet/50"></div>
+                        {/* Radar/Sanctum Symbol with Glow */}
+                        <div className="relative w-48 h-48 md:w-64 md:h-64">
+                            {/* Concentric Rings with Pulse */}
+                            <div className="absolute inset-0 border-[1px] border-scarlet/20 rounded-full animate-[pulse_4s_infinite]"></div>
+                            <div className="absolute inset-8 border-[1px] border-scarlet/30 rounded-full animate-pulse-slow"></div>
+                            <div className="absolute inset-16 border-[2px] border-scarlet/50 rounded-full shadow-[0_0_15px_rgba(255,42,42,0.4)]"></div>
+
+                            {/* Rotating Radar Sweep */}
+                            <div className="absolute inset-0 rounded-full animate-radar origin-center">
+                                <div className="w-full h-full bg-[conic-gradient(from_0deg,transparent_0deg,rgba(255,42,42,0.1)_60deg,rgba(255,42,42,0.5)_90deg,transparent_91deg)] rounded-full"></div>
+                                {/* Leading Edge Glow */}
+                                <div className="absolute top-0 left-1/2 w-[2px] h-1/2 bg-scarlet/80 shadow-[0_0_20px_#ff2a2a] origin-bottom transform -translate-x-1/2"></div>
                             </div>
-                            <div className="absolute inset-[35%] border-4 border-scarlet rounded-full shadow-[0_0_30px_#ff2a2a]"></div>
+
+                            {/* Center Core */}
+                            <div className="absolute inset-[42%] bg-scarlet rounded-full shadow-[0_0_30px_#ff2a2a] animate-pulse"></div>
+
+                            {/* Orbital Dots */}
+                            <div className="absolute top-0 left-1/2 w-1 h-1 bg-white rounded-full shadow-[0_0_10px_white] animate-[spin_3s_linear_infinite_reverse] origin-[0_128px]"></div>
                         </div>
 
-                        {/* Scanning Line */}
-                        <div className="absolute top-0 left-0 w-full h-[2px] bg-scarlet shadow-[0_0_10px_#ff2a2a] animate-[scan_3s_ease-in-out_infinite]"></div>
+                        {/* Scanning Line (Retained) */}
+                        <div className="absolute top-0 left-0 w-full h-[1px] bg-scarlet/50 shadow-[0_0_10px_#ff2a2a] animate-scan opacity-50"></div>
 
                         <div className="absolute bottom-4 left-4 font-retro text-[10px] text-gray-500 uppercase">
                             <div>LIVE FEED</div>
