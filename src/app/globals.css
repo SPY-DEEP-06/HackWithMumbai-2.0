@@ -1,26 +1,123 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Default to Stranger Theme if not specified */
+    --background: 10 10% 4%;
+    /* Ash Black #0a0a0a */
+    --foreground: 0 0% 70%;
+    /* Fog Grey #b3b3b3 */
+
+    --primary: 0 100% 30%;
+    /* Blood Red #990000 */
+    --primary-foreground: 0 0% 90%;
+
+    --secondary: 0 62% 10%;
+    /* Dark Maroon #2b0a0a */
+    --secondary-foreground: 0 0% 80%;
+
+    --accent: 0 100% 50%;
+    /* Neon Red #ff0000 */
+    --accent-foreground: 0 0% 98%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 50%;
+
+    --border: 0 62% 15%;
+    --radius: 0.5rem;
+
+    /* Animation Speeds */
+    --portal-speed: 20s;
+  }
+
+  /* STRANGER THINGS MODE */
+  [data-theme="stranger"] {
+    --background: 10 10% 4%;
+    --foreground: 0 0% 70%;
+    --primary: 0 100% 30%;
+    --primary-foreground: 0 0% 90%;
+    --secondary: 0 62% 10%;
+    --secondary-foreground: 0 0% 80%;
+    --accent: 0 100% 50%;
+    --accent-foreground: 0 0% 98%;
+    --border: 0 62% 15%;
+    --font-heading: "Stranger Things", sans-serif;
+  }
+
+  /* HYBRID MODE */
+  [data-theme="hybrid"] {
+    --background: 240 30% 4%;
+    /* Dark Cosmic #050510 */
+    --foreground: 0 0% 88%;
+    --primary: 0 100% 50%;
+    /* Chaos Red */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 186 100% 50%;
+    /* Electric Blue */
+    --secondary-foreground: 186 100% 10%;
+    --accent: 277 100% 50%;
+    /* Multiverse Purple */
+    --accent-foreground: 0 0% 98%;
+    --border: 277 50% 20%;
+    --font-heading: "Hybrid Sans", sans-serif;
+  }
+
+  /* MARVEL MODE */
+  [data-theme="marvel"] {
+    --background: 260 50% 2%;
+    /* Deep Space */
+    --foreground: 0 0% 100%;
+    --primary: 275 87% 36%;
+    /* Cosmic Purple #6a0dad */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 222 47% 11%;
+    /* Slate #0f172a */
+    --secondary-foreground: 210 40% 98%;
+    --accent: 51 100% 50%;
+    /* Gold #ffd700 */
+    --accent-foreground: 51 100% 10%;
+    --border: 51 50% 30%;
+    --font-heading: "Marvel Serif", serif;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 1000ms;
+    background-image: url('/noise.png');
+  }
+}
+
+/* Custom Gradients & Effects */
+.glass-panel {
+  background-color: rgba(0, 0, 0, 0.4);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.text-glow {
+  text-shadow: 0 0 10px hsl(var(--accent));
+}
+
+.portal-spin {
+  animation: spin var(--portal-speed) linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
