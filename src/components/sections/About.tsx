@@ -8,9 +8,9 @@ import { Trophy, Users, Shield, Zap } from "lucide-react";
 gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
-    { label: "OPERATIVES", value: "500+", icon: Users },
-    { label: "BOUNTY", value: "₹1.5L", icon: Trophy },
-    { label: "MENTORS", value: "20+", icon: Shield },
+    { label: "OPERATIVES", endValue: 500, suffix: "+", icon: Users, decimals: 0 },
+    { label: "BOUNTY", endValue: 1.5, prefix: "₹", suffix: "L", icon: Trophy, decimals: 1 },
+    { label: "MENTORS", endValue: 20, suffix: "+", icon: Shield, decimals: 0 },
 ];
 
 export default function About() {
@@ -18,6 +18,7 @@ export default function About() {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
+            // Cards Entrance
             gsap.from(".holo-card", {
                 scrollTrigger: {
                     trigger: containerRef.current,
@@ -29,6 +30,29 @@ export default function About() {
                 stagger: 0.2,
                 ease: "power2.out",
             });
+
+            // Number Counters
+            stats.forEach((stat, index) => {
+                const el = document.getElementById(`stat-${index}`);
+                const obj = { val: 0 };
+
+                if (el) {
+                    gsap.to(obj, {
+                        val: stat.endValue,
+                        duration: 2.5,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "top 85%",
+                        },
+                        onUpdate: () => {
+                            const formattedVal = obj.val.toFixed(stat.decimals);
+                            el.innerText = `${stat.prefix || ""}${formattedVal}${stat.suffix || ""}`;
+                        }
+                    });
+                }
+            });
+
         }, containerRef);
 
         return () => ctx.revert();
@@ -120,14 +144,17 @@ export default function About() {
                 {/* Bottom Stats Row */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {stats.slice(0, 3).map((stat, index) => (
-                        <div key={index} className="relative p-6 border border-scarlet/20 bg-black/40 hover:bg-scarlet/5 transition-colors group text-center">
+                        <div key={index} className="relative p-6 border border-scarlet/20 bg-black/40 hover:bg-scarlet/5 transition-colors group text-center holo-card">
                             <div className="absolute top-2 right-2 text-scarlet/30">
                                 <Shield size={12} />
                             </div>
 
                             <div className="flex flex-col items-center">
                                 <stat.icon className="w-8 h-8 text-scarlet mb-3 group-hover:scale-110 transition-transform" />
-                                <h4 className="text-3xl font-cinematic text-white mb-1 group-hover:text-scarlet transition-colors">{stat.value}</h4>
+                                <h4 id={`stat-${index}`} className="text-3xl font-cinematic text-white mb-1 group-hover:text-scarlet transition-colors">
+                                    {/* Initial static render, will be animated */}
+                                    {stat.prefix || ""}0{stat.suffix || ""}
+                                </h4>
                                 <p className="font-retro text-[10px] text-scarlet tracking-widest uppercase">{stat.label}</p>
                             </div>
                         </div>
