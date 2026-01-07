@@ -12,10 +12,10 @@ interface Organizer {
 }
 
 const organizers: Organizer[] = [
-    { name: "Yash Mohite", role: "Head Operations", contact: "+91 9967053816", variantId: "VAR-892" },
-    { name: "Shubham Bhat", role: "Tech Lead", contact: "+91 9082193612", variantId: "VAR-114" },
-    { name: "Aayush Pandey", role: "Logistics", contact: "+91 9820883125", variantId: "VAR-773" },
-    { name: "Ansh Verma", role: "Sponsorship", contact: "+91 6261681932", variantId: "VAR-002" },
+    { name: "Yash Mohite", role: "Organizer", contact: "+91 9967053816", variantId: "VAR-892" },
+    { name: "Shubham Bhat", role: "Organizer", contact: "+91 9082193612", variantId: "VAR-114" },
+    { name: "Aayush Pandey", role: "Organizer", contact: "+91 9820883125", variantId: "VAR-773" },
+    { name: "Ansh Verma", role: "Organizer", contact: "+91 6261681932", variantId: "VAR-002" },
 ];
 
 export default function Organizers() {
