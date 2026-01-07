@@ -28,9 +28,9 @@ export default function Footer() {
                         <img
                             src="/adapts_logo.png"
                             alt="ADAPTS.CO"
-                            className="h-10 w-auto object-contain filter group-hover:brightness-125 transition-all"
+                            className="h-8 w-auto object-contain filter group-hover:brightness-125 transition-all"
                         />
-                        <span className="font-cinematic text-xl text-tva font-bold tracking-widest group-hover:text-scarlet transition-colors">ADAPTS.CO</span>
+                        <span className="font-cinematic text-lg text-tva font-bold tracking-widest group-hover:text-scarlet transition-colors">ADAPTS.CO</span>
                     </a>
                 </div>
             </div>
