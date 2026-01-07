@@ -9,7 +9,7 @@ export default function Hero() {
     const { theme } = useTheme();
 
     return (
-        <section className="relative min-h-screen flex flex-col items-center justify-center text-center p-4 overflow-hidden">
+        <section className="relative min-h-screen flex flex-col items-center justify-center text-center p-4 pt-32 overflow-hidden">
             {/* Background Ambience handled by globals and theme context, but we can add specific hero layers */}
 
             <div className="absolute inset-0 z-0 opacity-30 bg-gradient-to-b from-transparent via-primary/10 to-background pointer-events-none"></div>

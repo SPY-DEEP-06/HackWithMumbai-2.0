@@ -19,6 +19,13 @@ export default function StartupLoader({ onComplete }: StartupLoaderProps) {
             onComplete: onComplete
         });
 
+        // Failsafe: Force complete after 4 seconds if timeline hangs
+        const timer = setTimeout(() => {
+            if (containerRef.current) {
+                gsap.to(containerRef.current, { opacity: 0, onComplete });
+            }
+        }, 4000);
+
         // 0.2s: System Text Fades In
         tl.to(textRef.current, { opacity: 1, duration: 0.4, delay: 0.2, onStart: () => play("startup") })
             // 0.6s: Glitch Distortion
@@ -35,6 +42,7 @@ export default function StartupLoader({ onComplete }: StartupLoaderProps) {
 
         return () => {
             tl.kill();
+            clearTimeout(timer);
         };
     }, [onComplete, play]);
 
@@ -42,16 +50,14 @@ export default function StartupLoader({ onComplete }: StartupLoaderProps) {
         <div ref={containerRef} className="fixed inset-0 z-[100] h-screen w-full bg-black flex items-center justify-center overflow-hidden">
             <h1
                 ref={textRef}
-                className="text-4xl md:text-6xl font-black text-white tracking-widest uppercase opacity-0 font-mono"
-                style={{ textShadow: "0 0 10px rgba(255, 255, 255, 0.8)" }}
+                className="text-4xl md:text-6xl font-black text-white tracking-widest uppercase opacity-0 font-mono text-glow"
             >
                 Initialize Protocol...
             </h1>
 
             <div
                 ref={portalRef}
-                className="absolute w-32 h-32 rounded-full border-4 border-white opacity-0 shadow-[0_0_50px_rgba(255,255,255,0.8)]"
-                style={{ transform: "scale(0)" }}
+                className="absolute w-32 h-32 rounded-full border-4 border-white opacity-0 shadow-[0_0_50px_rgba(255,255,255,0.8)] scale-0"
             ></div>
         </div>
     );

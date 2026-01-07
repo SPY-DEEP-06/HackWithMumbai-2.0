@@ -28,7 +28,10 @@ export default function RulesSection() {
                 </p>
             </div>
 
-            <div className="grid gap-6 max-w-4xl mx-auto text-left">
+            <div className="grid gap-6 max-w-4xl mx-auto text-left relative z-10">
+                {/* Decorative Background for Grid */}
+                <div className="absolute inset-0 border border-primary/20 rounded-lg bg-black/40 -z-10 backdrop-blur-sm"></div>
+
                 {[
                     "Team Size: 2 to 4 Operatives strictly.",
                     "All code must be written during the 30-hour sprint.",
@@ -42,12 +45,15 @@ export default function RulesSection() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.1 }}
-                        className="bg-secondary/10 border border-secondary/30 p-4 rounded flex items-start gap-4 hover:bg-secondary/20 transition-colors group"
+                        className="p-6 flex items-start gap-4 border-b border-white/5 last:border-b-0 group hover:bg-white/5 transition-colors"
                     >
-                        <ShieldAlert className="text-accent shrink-0 mt-1 group-hover:animate-pulse" />
+                        <div className="mt-1 relative">
+                            <ShieldAlert className="text-primary shrink-0 group-hover:text-accent transition-colors" />
+                            <div className="absolute inset-0 bg-primary/20 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        </div>
                         <div>
-                            <h3 className="font-bold text-foreground mb-1">Directive {String(i + 1).padStart(2, '0')}</h3>
-                            <p className="text-muted-foreground">{rule}</p>
+                            <h3 className="font-mono text-sm text-primary/80 mb-1 uppercase tracking-widest">Directive {String(i + 1).padStart(2, '0')}</h3>
+                            <p className="text-gray-300 font-light text-lg">{rule}</p>
                         </div>
                     </motion.div>
                 ))}
