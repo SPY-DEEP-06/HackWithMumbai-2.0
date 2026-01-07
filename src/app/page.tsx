@@ -10,10 +10,7 @@ import Organizers from "@/components/sections/Organizers";
 import Footer from "@/components/layout/Footer";
 import Preloader from "@/components/layout/Preloader";
 
-// Dynamically import heavy 3D components
-const MultiverseBackground = dynamic(() => import("@/components/canvas/MultiverseBackground"), {
-  ssr: false,
-});
+import VideoBackground from "@/components/layout/VideoBackground";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -24,7 +21,7 @@ export default function Home() {
 
       {!loading && (
         <>
-          <MultiverseBackground />
+          <VideoBackground />
 
           <Hero />
           <About />
