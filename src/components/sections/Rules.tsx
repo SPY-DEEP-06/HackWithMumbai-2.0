@@ -35,7 +35,7 @@ export default function Rules() {
                                 href="https://drive.google.com/file/d/1MqzJ0RRwJ3k3rRMgiw6FxnyN5PI9S52j/view?usp=sharing"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="px-6 py-2 bg-loki/10 border border-loki text-loki font-bold hover:bg-loki hover:text-black transition-all"
+                                className="px-6 py-2 bg-[#00ff41]/10 border border-[#00ff41] text-[#00ff41] font-bold hover:bg-[#00ff41] hover:text-black transition-all"
                             >
                                 DOWNLOAD_METADATA
                             </a>
