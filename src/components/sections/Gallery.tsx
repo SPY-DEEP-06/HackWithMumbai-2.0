@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { X, ChevronRight, Terminal, Activity, Zap } from "lucide-react";
+import { useLenis } from "@studio-freight/react-lenis";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -104,22 +105,26 @@ export default function Gallery() {
     const sectionRef = useRef<HTMLDivElement>(null);
     const triggerRef = useRef<HTMLDivElement>(null);
     const [selectedArchive, setSelectedArchive] = useState<typeof archives[0] | null>(null);
+    const lenis = useLenis();
 
-    // Lock body scroll when modal is open
+    // Lock body scroll and pause Lenis when modal is open
     useEffect(() => {
         if (selectedArchive) {
+            lenis?.stop();
             document.documentElement.style.overflow = "hidden";
             document.body.style.overflow = "hidden";
         } else {
+            lenis?.start();
             document.documentElement.style.overflow = "";
             document.body.style.overflow = "";
         }
 
         return () => {
+            lenis?.start();
             document.documentElement.style.overflow = "";
             document.body.style.overflow = "";
         }
-    }, [selectedArchive]);
+    }, [selectedArchive, lenis]);
 
     useEffect(() => {
         const section = sectionRef.current;
@@ -270,7 +275,10 @@ export default function Gallery() {
                         </div>
 
                         {/* Right: Content Information */}
-                        <div className="w-full md:w-3/5 h-full overflow-y-auto p-8 md:p-12 bg-[#050505] custom-scrollbar overscroll-contain">
+                        <div
+                            className="w-full md:w-3/5 h-full overflow-y-auto p-8 md:p-12 bg-[#050505] custom-scrollbar overscroll-contain"
+                            data-lenis-prevent
+                        >
 
                             {/* Briefing */}
                             <div className="mb-8">
