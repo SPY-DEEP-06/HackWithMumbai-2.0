@@ -57,7 +57,7 @@ export default function Hero() {
             </h2>
 
             <div className="relative px-4">
-                <h1 className="text-fluid-h1 font-cinematic font-bold text-white relative z-10 mix-blend-difference text-shadow-multiverse break-words">
+                <h1 className="text-fluid-h1 font-cinematic font-bold text-white relative z-10 mix-blend-difference text-shadow-multiverse break-words animate-glitch">
                     HACKWITHMUMBAI 2.0
                 </h1>
                 {/* Pseudo-element style glitches */}

@@ -26,9 +26,12 @@ export default {
             },
             keyframes: {
                 glitch: {
-                    "2%, 64%": { transform: "translate(2px,0) skew(0deg)" },
-                    "4%, 60%": { transform: "translate(-2px,0) skew(0deg)" },
-                    "62%": { transform: "translate(0,0) skew(5deg)" },
+                    "0%": { clipPath: "inset(40% 0 61% 0)", transform: "translate(-2px, 2px)" },
+                    "20%": { clipPath: "inset(92% 0 1% 0)", transform: "translate(2px, -2px)" },
+                    "40%": { clipPath: "inset(43% 0 1% 0)", transform: "translate(-2px, 2px)" },
+                    "60%": { clipPath: "inset(25% 0 58% 0)", transform: "translate(2px, -2px)" },
+                    "80%": { clipPath: "inset(54% 0 7% 0)", transform: "translate(-2px, 2px)" },
+                    "100%": { clipPath: "inset(58% 0 43% 0)", transform: "translate(2px, -2px)" },
                 },
                 flicker: {
                     "0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100%": {
