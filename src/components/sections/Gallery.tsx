@@ -40,58 +40,110 @@ const archives = [
 ];
 
 export default function Gallery() {
+    const sectionRef = useRef<HTMLDivElement>(null);
+    const triggerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const section = sectionRef.current;
+
+        if (section && triggerRef.current) {
+            const totalPanels = archives.length + 1; // Title + Images
+            const pin = gsap.fromTo(section,
+                { translateX: 0 },
+                {
+                    translateX: `-${(totalPanels - 1) * 100}vw`,
+                    ease: "none",
+                    duration: 1,
+                    scrollTrigger: {
+                        trigger: triggerRef.current,
+                        start: "top top",
+                        end: `${totalPanels * 1000} top`,
+                        scrub: 0.6,
+                        pin: true,
+                    }
+                }
+            );
+            return () => {
+                pin.kill();
+            };
+        }
+    }, []);
+
     return (
-        <section className="relative py-20 px-4 md:px-10 bg-black z-20 overflow-hidden">
-            {/* Background Texture */}
-            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10"></div>
+        <section className="overflow-hidden bg-black relative z-20">
+            <div ref={triggerRef}>
+                <div
+                    ref={sectionRef}
+                    className="h-screen flex flex-row relative"
+                    style={{ width: `${(archives.length + 1) * 100}vw` }}
+                >
 
-            <div className="max-w-7xl mx-auto relative z-10">
-                <div className="text-center mb-16">
-                    <h2 className="text-5xl md:text-7xl font-cinematic text-white tracking-wider mb-2">
-                        PAST ARCHIVES
-                    </h2>
-                    <div className="w-32 h-1 bg-gradient-to-r from-transparent via-scarlet to-transparent mx-auto"></div>
-                </div>
+                    {/* Title Panel */}
+                    <div className="w-screen h-full flex flex-col items-center justify-center px-4 md:px-20 border-r border-white/10 relative text-center">
+                        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20"></div>
+                        <h2 className="text-5xl md:text-7xl font-cinematic text-transparent bg-clip-text bg-gradient-to-r from-tva to-scarlet mb-4 md:mb-8 font-bold tracking-wider">
+                            PAST ARCHIVES
+                        </h2>
+                        <p className="font-retro text-base md:text-xl text-gray-400 px-4">
+                            Recovered footage from previous timelines.
+                        </p>
+                        <div className="mt-8 md:mt-12 animate-bounce text-loki text-sm md:text-base">
+                            Scroll to Access Database &rarr;
+                        </div>
+                    </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {/* Archive Panels */}
                     {archives.map((archive, index) => (
-                        <div
-                            key={index}
-                            className="group relative bg-[#0a0a0a] border border-white/10 hover:border-scarlet/50 transition-colors duration-300 overflow-hidden"
-                        >
-                            {/* Image Container */}
-                            <div className="relative aspect-video overflow-hidden">
-                                <div className="absolute inset-0 bg-scarlet/10 mix-blend-overlay z-10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                <img
-                                    src={archive.image}
-                                    alt={archive.title}
-                                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500"
-                                />
-                                {/* Date Badge */}
-                                <div className="absolute top-4 right-4 bg-black/90 border border-scarlet px-2 py-1 z-20">
-                                    <span className="text-scarlet font-retro text-xs font-bold tracking-widest uppercase">
-                                        {archive.date}
-                                    </span>
-                                </div>
-                            </div>
+                        <div key={index} className="w-screen h-full flex items-center justify-center p-4 md:p-20 border-r border-white/5 relative bg-[#050505]">
 
-                            {/* Content */}
-                            <div className="p-6">
-                                <h3 className="text-xl md:text-2xl font-cinematic text-white mb-8 group-hover:text-scarlet transition-colors">
-                                    {archive.title}
-                                </h3>
+                            {/* Card Container */}
+                            <div className="group relative w-full max-w-4xl bg-[#0a0a0a] border border-white/10 hover:border-scarlet/50 transition-all duration-500 overflow-hidden flex flex-col md:flex-row h-[70vh] md:h-[60vh]">
 
-                                <div className="flex items-center justify-between pt-4 border-t border-white/10 group-hover:border-scarlet/30 transition-colors">
-                                    <span className="font-retro text-xs text-gray-500 uppercase tracking-widest">
-                                        ID: {archive.id}
-                                    </span>
-                                    <button className="flex items-center gap-1 text-scarlet text-xs font-bold font-retro uppercase tracking-wider group-hover:gap-2 transition-all">
-                                        ACCESS DATA <span className="text-sm">&rsaquo;</span>
-                                    </button>
+                                {/* Image Half */}
+                                <div className="relative w-full md:w-2/3 h-1/2 md:h-full overflow-hidden">
+                                    <div className="absolute inset-0 bg-scarlet/10 mix-blend-overlay z-10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                    <img
+                                        src={archive.image}
+                                        alt={archive.title}
+                                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                                    />
+                                    <div className="absolute top-4 right-4 bg-black/90 border border-scarlet px-2 py-1 z-20">
+                                        <span className="text-scarlet font-retro text-xs font-bold tracking-widest uppercase">
+                                            {archive.date}
+                                        </span>
+                                    </div>
                                 </div>
+
+                                {/* Content Half */}
+                                <div className="w-full md:w-1/3 h-1/2 md:h-full p-6 md:p-8 flex flex-col justify-between relative bg-dotted-spacing-4 bg-dotted-white/[0.05]">
+                                    <div>
+                                        <h3 className="text-2xl md:text-3xl font-cinematic text-white mb-4 group-hover:text-scarlet transition-colors leading-tight">
+                                            {archive.title}
+                                        </h3>
+                                        <div className="w-12 h-1 bg-white/20 group-hover:bg-scarlet transition-colors mb-6"></div>
+                                        <p className="font-retro text-xs text-gray-500 leading-relaxed">
+                                            &gt; ACCESSING_MEMORY_BLOCK...<br />
+                                            &gt; DECRYPTING_VISUALS...<br />
+                                            &gt; STATUS: RESTORED
+                                        </p>
+                                    </div>
+
+                                    <div className="pt-6 border-t border-white/10">
+                                        <div className="flex justify-between items-center mb-4">
+                                            <span className="font-retro text-xs text-gray-600 uppercase tracking-widest">
+                                                ID: {archive.id}
+                                            </span>
+                                        </div>
+                                        <button className="w-full py-3 bg-white/5 border border-white/10 text-white font-retro text-xs uppercase tracking-widest hover:bg-scarlet hover:border-scarlet transition-all group-hover:shadow-[0_0_15px_rgba(255,42,42,0.3)]">
+                                            ACCESS DATA
+                                        </button>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     ))}
+
                 </div>
             </div>
         </section>
