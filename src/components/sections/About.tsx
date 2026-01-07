@@ -36,7 +36,7 @@ export default function About() {
     }, []);
 
     return (
-        <section ref={containerRef} className="relative py-20 px-4 md:px-10 z-10 bg-black/50 backdrop-blur-sm border-t border-tva/20">
+        <section ref={containerRef} className="relative py-10 md:py-20 px-4 md:px-10 z-10 bg-black/50 backdrop-blur-sm border-t border-tva/20">
             <div className="max-w-7xl mx-auto">
 
                 <div className="mb-16 text-center">

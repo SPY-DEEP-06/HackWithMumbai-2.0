@@ -34,13 +34,13 @@ function CountdownTimer() {
     }, []);
 
     return (
-        <div className="flex gap-4 md:gap-8 font-retro text-tva text-2xl md:text-4xl mt-8">
+        <div className="flex gap-3 md:gap-8 font-retro text-tva text-xl md:text-4xl mt-6 md:mt-8 flex-wrap justify-center">
             {Object.entries(timeLeft).map(([unit, value]) => (
-                <div key={unit} className="flex flex-col items-center">
-                    <div className="bg-black/80 border border-tva/50 p-2 md:p-4 rounded shadow-[0_0_10px_rgba(255,140,0,0.3)] backdrop-blur-sm">
+                <div key={unit} className="flex flex-col items-center min-w-[60px] md:min-w-[80px]">
+                    <div className="bg-black/80 border border-tva/50 p-2 md:p-4 rounded shadow-[0_0_10px_rgba(255,140,0,0.3)] backdrop-blur-sm w-full">
                         <span className="font-bold">{String(value).padStart(2, '0')}</span>
                     </div>
-                    <span className="text-xs md:text-sm uppercase tracking-widest text-white/60 mt-2">{unit}</span>
+                    <span className="text-[10px] md:text-sm uppercase tracking-widest text-white/60 mt-2">{unit}</span>
                 </div>
             ))}
         </div>
@@ -56,12 +56,12 @@ export default function Hero() {
                 &lt; NATIONAL LEVEL HACKATHON /&gt;
             </h2>
 
-            <div className="relative">
-                <h1 className="text-5xl md:text-8xl font-cinematic font-bold text-white relative z-10 mix-blend-difference text-shadow-multiverse">
+            <div className="relative px-4">
+                <h1 className="text-fluid-h1 font-cinematic font-bold text-white relative z-10 mix-blend-difference text-shadow-multiverse break-words">
                     HACKWITHMUMBAI 2.0
                 </h1>
-                {/* Pseudo-element style glitches would be in global CSS or tailored here using duplicate text */}
-                <h1 className="absolute top-0 left-0 text-5xl md:text-8xl font-cinematic font-bold text-scarlet opacity-50 animate-glitch z-0 blur-[1px]">
+                {/* Pseudo-element style glitches */}
+                <h1 className="absolute top-0 left-0 w-full text-fluid-h1 font-cinematic font-bold text-scarlet opacity-50 animate-glitch z-0 blur-[1px] select-none pointer-events-none break-words">
                     HACKWITHMUMBAI 2.0
                 </h1>
             </div>

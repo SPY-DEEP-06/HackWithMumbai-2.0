@@ -20,7 +20,7 @@ const organizers: Organizer[] = [
 
 export default function Organizers() {
     return (
-        <section className="relative py-20 px-4 md:px-10 bg-black/90 border-t border-tva/20">
+        <section className="relative py-10 md:py-20 px-4 md:px-10 bg-black/90 border-t border-tva/20">
             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
 
             <div className="max-w-7xl mx-auto relative z-10">
