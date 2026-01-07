@@ -13,7 +13,11 @@ const archives = [
         title: "BUILD IT TOUR 2.0",
         date: "SEP 27, 2025",
         id: "ARCHIVE 01",
-        image: "https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=600&auto=format&fit=crop&grayscale",
+        image: "/eventsimg/build_it_tour_1.jpg",
+        gallery: [
+            "/eventsimg/build_it_tour_1.jpg",
+            "/eventsimg/build_it_tour_2.jpg"
+        ],
         briefing: "A full day of learning, innovation, and networking at Microsoft HQ.",
         objectives: [
             "Exposure to cutting-edge technologies and entrepreneurial journeys.",
@@ -31,7 +35,11 @@ const archives = [
         title: "PRE-EVENT HACKWITHMUMBAI",
         date: "SEP 15, 2025",
         id: "ARCHIVE 02",
-        image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=600&auto=format&fit=crop&grayscale",
+        image: "/eventsimg/pre_event_1.jpg",
+        gallery: [
+            "/eventsimg/pre_event_1.jpg",
+            "/eventsimg/pre_event_2.jpg"
+        ],
         briefing: "The exclusive curtain-raiser for the main HackWithMumbai initiative.",
         objectives: [
             "Introduce vision and goals of the HackWithMumbai initiative.",
@@ -49,7 +57,11 @@ const archives = [
         title: "HWI ORIENTATION",
         date: "AUG 23, 2025",
         id: "ARCHIVE 03",
-        image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=600&auto=format&fit=crop&grayscale",
+        image: "/eventsimg/hwi_orientation_1.jpg",
+        gallery: [
+            "/eventsimg/hwi_orientation_1.jpg",
+            "/eventsimg/hwi_orientation_2.jpg"
+        ],
         briefing: "Introducing 350+ students to the vision of HackWithIndia.",
         objectives: [
             "Introduce first-year students to HackWithIndia vision.",
@@ -67,7 +79,12 @@ const archives = [
         title: "HACKWITHMUMBAI HACKATHON",
         date: "SEP 21, 2025",
         id: "ARCHIVE 04",
-        image: "https://images.unsplash.com/photo-1504384308090-c54be3852f33?q=80&w=600&auto=format&fit=crop&grayscale",
+        image: "/eventsimg/hwm_hackathon_2.jpg",
+        gallery: [
+            "/eventsimg/hwm_hackathon_2.jpg",
+            "/eventsimg/hwm_hackathon_3.jpg",
+            "/eventsimg/hwm_hackathon_4.jpg"
+        ],
         briefing: "55 Teams. 10 Hours. Infinite Innovation.",
         objectives: [
             "Platform to ideate, code, and innovate on real-world problems.",
@@ -85,7 +102,12 @@ const archives = [
         title: "LEARN IT TOUR",
         date: "JUL 16, 2025",
         id: "ARCHIVE 05",
-        image: "https://images.unsplash.com/photo-1475721027785-f74eccf8e5fe?q=80&w=600&auto=format&fit=crop&grayscale",
+        image: "/eventsimg/learn_it_tour_1.jpg",
+        gallery: [
+            "/eventsimg/learn_it_tour_1.jpg",
+            "/eventsimg/learn_it_tour_2.jpg",
+            "/eventsimg/learn_it_tour_3.jpg"
+        ],
         briefing: "A vibrant platform for learning with 220+ participants.",
         objectives: [
             "Exposure to latest trends and tools in tech.",
@@ -334,16 +356,18 @@ export default function Gallery() {
                             <div>
                                 <h4 className="text-scarlet font-retro text-xs uppercase tracking-[0.2em] mb-4">Visual Evidence</h4>
                                 <div className="grid grid-cols-3 gap-4">
-                                    {[1, 2, 3].map((_, i) => (
+                                    {selectedArchive.gallery ? selectedArchive.gallery.map((img, i) => (
                                         <div key={i} className="aspect-video relative overflow-hidden border border-white/10 group cursor-pointer hover:border-scarlet/50 transition-colors">
                                             <img
-                                                src={selectedArchive.image}
+                                                src={img}
                                                 alt="Evidence"
                                                 className="w-full h-full object-cover grayscale opacity-50 group-hover:opacity-100 group-hover:grayscale-0 transition-all"
                                             />
                                             <div className="absolute inset-0 bg-scarlet/10 mix-blend-overlay"></div>
                                         </div>
-                                    ))}
+                                    )) : (
+                                        <p className="text-gray-500 text-sm italic">Accessing classified visual streams...</p>
+                                    )}
                                 </div>
                             </div>
 
