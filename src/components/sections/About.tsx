@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
     { label: "OPERATIVES", endValue: 500, suffix: "+", icon: Users, decimals: 0 },
-    { label: "BOUNTY", endValue: 1.5, prefix: "₹", suffix: "L", icon: Trophy, decimals: 1 },
+    { label: "BOUNTY", endValue: 50, prefix: "₹", suffix: "k+", icon: Trophy, decimals: 0 },
     { label: "MENTORS", endValue: 20, suffix: "+", icon: Shield, decimals: 0 },
 ];
 
@@ -33,7 +33,7 @@ export default function About() {
 
             // Number Counters
             stats.forEach((stat, index) => {
-                const el = document.getElementById(`stat-${index}`);
+                const el = document.getElementById(`stat-item-${index}`);
                 const obj = { val: 0 };
 
                 if (el) {
@@ -151,7 +151,7 @@ export default function About() {
 
                             <div className="flex flex-col items-center">
                                 <stat.icon className="w-8 h-8 text-scarlet mb-3 group-hover:scale-110 transition-transform" />
-                                <h4 id={`stat-${index}`} className="text-3xl font-cinematic text-white mb-1 group-hover:text-scarlet transition-colors">
+                                <h4 id={`stat-item-${index}`} className="text-3xl font-cinematic text-white mb-1 group-hover:text-scarlet transition-colors">
                                     {/* Initial static render, will be animated */}
                                     {stat.prefix || ""}0{stat.suffix || ""}
                                 </h4>

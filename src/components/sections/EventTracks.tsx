@@ -12,7 +12,6 @@ import {
     Lightbulb,
     Swords
 } from "lucide-react";
-import { CSSProperties } from "react";
 
 const tracks = [
     {
@@ -20,72 +19,72 @@ const tracks = [
         icon: HeartPulse,
         description: "Innovating for a healthier tomorrow.",
         color: "text-red-500",
-        shadowColor: "rgba(239, 68, 68, 0.5)",
-        borderColor: "group-hover:border-red-500"
+        borderColor: "group-hover:border-red-500",
+        hoverShadow: "hover:shadow-[0_0_30px_rgba(239,68,68,0.5),inset_0_0_10px_rgba(239,68,68,0.5)]"
     },
     {
         title: "EdTech",
         icon: GraduationCap,
         description: "Revolutionizing the way we learn.",
         color: "text-yellow-500",
-        shadowColor: "rgba(234, 179, 8, 0.5)",
-        borderColor: "group-hover:border-yellow-500"
+        borderColor: "group-hover:border-yellow-500",
+        hoverShadow: "hover:shadow-[0_0_30px_rgba(234,179,8,0.5),inset_0_0_10px_rgba(234,179,8,0.5)]"
     },
     {
         title: "FinTech",
         icon: TrendingUp,
         description: "Disrupting the world of finance.",
         color: "text-green-500",
-        shadowColor: "rgba(34, 197, 94, 0.5)",
-        borderColor: "group-hover:border-green-500"
+        borderColor: "group-hover:border-green-500",
+        hoverShadow: "hover:shadow-[0_0_30px_rgba(34,197,94,0.5),inset_0_0_10px_rgba(34,197,94,0.5)]"
     },
     {
         title: "AgriTech",
         icon: Sprout,
         description: "Cultivating sustainable solutions.",
         color: "text-emerald-500",
-        shadowColor: "rgba(16, 185, 129, 0.5)",
-        borderColor: "group-hover:border-emerald-500"
+        borderColor: "group-hover:border-emerald-500",
+        hoverShadow: "hover:shadow-[0_0_30px_rgba(16,185,129,0.5),inset_0_0_10px_rgba(16,185,129,0.5)]"
     },
     {
         title: "Smart Cities",
         icon: Building2,
         description: "Building the cities of the future.",
         color: "text-blue-500",
-        shadowColor: "rgba(59, 130, 246, 0.5)",
-        borderColor: "group-hover:border-blue-500"
+        borderColor: "group-hover:border-blue-500",
+        hoverShadow: "hover:shadow-[0_0_30px_rgba(59,130,246,0.5),inset_0_0_10px_rgba(59,130,246,0.5)]"
     },
     {
         title: "CyberTech",
         icon: ShieldCheck,
         description: "Securing the digital frontier.",
         color: "text-purple-500",
-        shadowColor: "rgba(168, 85, 247, 0.5)",
-        borderColor: "group-hover:border-purple-500"
+        borderColor: "group-hover:border-purple-500",
+        hoverShadow: "hover:shadow-[0_0_30px_rgba(168,85,247,0.5),inset_0_0_10px_rgba(168,85,247,0.5)]"
     },
     {
         title: "AI & ML",
         icon: Bot,
         description: "Unleashing the power of intelligence.",
         color: "text-cyan-500",
-        shadowColor: "rgba(6, 182, 212, 0.5)",
-        borderColor: "group-hover:border-cyan-500"
+        borderColor: "group-hover:border-cyan-500",
+        hoverShadow: "hover:shadow-[0_0_30px_rgba(6,182,212,0.5),inset_0_0_10px_rgba(6,182,212,0.5)]"
     },
     {
         title: "Web & App Dev",
         icon: Smartphone,
         description: "Crafting digital experiences.",
         color: "text-orange-500",
-        shadowColor: "rgba(249, 115, 22, 0.5)",
-        borderColor: "group-hover:border-orange-500"
+        borderColor: "group-hover:border-orange-500",
+        hoverShadow: "hover:shadow-[0_0_30px_rgba(249,115,22,0.5),inset_0_0_10px_rgba(249,115,22,0.5)]"
     },
     {
         title: "Open Innovation",
         icon: Lightbulb,
         description: "Solving problems without boundaries.",
         color: "text-white",
-        shadowColor: "rgba(255, 255, 255, 0.5)",
-        borderColor: "group-hover:border-white"
+        borderColor: "group-hover:border-white",
+        hoverShadow: "hover:shadow-[0_0_30px_rgba(255,255,255,0.5),inset_0_0_10px_rgba(255,255,255,0.5)]"
     }
 ];
 
@@ -114,8 +113,7 @@ export default function EventTracks() {
                     {tracks.map((track, index) => (
                         <div
                             key={index}
-                            className={`group relative p-6 bg-black/40 border border-white/5 ${track.borderColor} hover:border-opacity-100 transition-all duration-500 rounded-xl overflow-hidden hover:-translate-y-2 backdrop-blur-sm shadow-[0_0_0_rgba(0,0,0,0)] hover:shadow-[0_0_30px_var(--track-shadow),inset_0_0_10px_var(--track-shadow)]`}
-                            style={{ "--track-shadow": track.shadowColor } as CSSProperties}
+                            className={`group relative p-6 bg-black/40 border border-white/5 ${track.borderColor} ${track.hoverShadow} hover:border-opacity-100 transition-all duration-500 rounded-xl overflow-hidden hover:-translate-y-2 backdrop-blur-sm shadow-[0_0_0_rgba(0,0,0,0)]`}
                         >
                             {/* Lightning/Energy Effect Container */}
                             <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
