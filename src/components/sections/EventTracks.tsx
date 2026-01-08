@@ -12,6 +12,7 @@ import {
     Lightbulb,
     Swords
 } from "lucide-react";
+import { CSSProperties } from "react";
 
 const tracks = [
     {
@@ -113,16 +114,8 @@ export default function EventTracks() {
                     {tracks.map((track, index) => (
                         <div
                             key={index}
-                            className={`group relative p-6 bg-black/40 border border-white/5 ${track.borderColor} hover:border-opacity-100 transition-all duration-500 rounded-xl overflow-hidden hover:-translate-y-2 backdrop-blur-sm`}
-                            style={{
-                                boxShadow: "0 0 0 rgba(0,0,0,0)" // Default
-                            }}
-                            onMouseEnter={(e) => {
-                                e.currentTarget.style.boxShadow = `0 0 30px ${track.shadowColor}, inset 0 0 10px ${track.shadowColor}`;
-                            }}
-                            onMouseLeave={(e) => {
-                                e.currentTarget.style.boxShadow = "none";
-                            }}
+                            className={`group relative p-6 bg-black/40 border border-white/5 ${track.borderColor} hover:border-opacity-100 transition-all duration-500 rounded-xl overflow-hidden hover:-translate-y-2 backdrop-blur-sm shadow-[0_0_0_rgba(0,0,0,0)] hover:shadow-[0_0_30px_var(--track-shadow),inset_0_0_10px_var(--track-shadow)]`}
+                            style={{ "--track-shadow": track.shadowColor } as CSSProperties}
                         >
                             {/* Lightning/Energy Effect Container */}
                             <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
