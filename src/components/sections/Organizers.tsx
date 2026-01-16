@@ -13,7 +13,7 @@ interface Organizer {
 
 const organizers: Organizer[] = [
     { name: "Yash Mohite", role: "Organizer", contact: "+91 9967053816", variantId: "VAR-892" },
-    { name: "Shubham Bhat", role: "Organizer", contact: "+91 9082193612", variantId: "VAR-114" },
+    { name: "Deepanshu J. Ghosalkar", role: "Technical Head", contact: "+91 8108776019", variantId: "VAR-114" },
     { name: "Aayush Pandey", role: "Organizer", contact: "+91 9820883125", variantId: "VAR-773" },
     { name: "Ansh Verma", role: "Organizer", contact: "+91 6261681932", variantId: "VAR-002" },
 ];
