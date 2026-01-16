@@ -11,6 +11,7 @@ import Footer from "@/components/layout/Footer";
 import Preloader from "@/components/layout/Preloader";
 import VideoBackground from "@/components/layout/VideoBackground";
 import EventTracks from "@/components/sections/EventTracks";
+import Sponsors from "@/components/sections/Sponsors";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -28,6 +29,7 @@ export default function Home() {
           <EventTracks />
           <Gallery />
           <Rules />
+          <Sponsors />
           <Organizers />
           <Footer />
         </>
