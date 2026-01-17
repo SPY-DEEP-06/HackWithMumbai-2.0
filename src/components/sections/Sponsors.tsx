@@ -17,6 +17,7 @@ const SPJainLogo = (props: { className?: string }) => <SponsorImage src="/Sponso
 const UnstopLogo = (props: { className?: string }) => <SponsorImage src="/Sponsorslogo/Unstop.png" alt="Unstop" {...props} />;
 const AdaptsLogo = (props: { className?: string }) => <SponsorImage src="/Sponsorslogo/adapts.png" alt="Adapts" {...props} />;
 const QualitySoftechLogo = (props: { className?: string }) => <SponsorImage src="/Sponsorslogo/qualitysoftech.png" alt="Quality Softech" {...props} />;
+const CollegeRivalsLogo = (props: { className?: string }) => <SponsorImage src="/Sponsorslogo/College_Rivals.png" alt="College Rivals" {...props} />;
 
 const sponsors: Logo[] = [
     { name: "Civora Nexus", id: 1, img: CivoraNexusLogo },
@@ -26,6 +27,7 @@ const sponsors: Logo[] = [
     { name: "Unstop", id: 5, img: UnstopLogo },
     { name: "Adapts", id: 6, img: AdaptsLogo },
     { name: "Quality Softech", id: 7, img: QualitySoftechLogo },
+    { name: "College Rivals", id: 8, img: CollegeRivalsLogo },
     // Duplicate some to fill the carousel if needed, or let the carousel logic handle it (it does shuffle/distribute)
 ];
 
