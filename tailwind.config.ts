@@ -15,6 +15,7 @@ export default {
                 "darkhold": "#050505",
                 "loki": "#00ff41",
                 "tva": "#ff8c00",
+                "hackathon-orange": "#ff8c00",
             },
             fontFamily: {
                 "cinematic": ["var(--font-cinematic)", "serif"],

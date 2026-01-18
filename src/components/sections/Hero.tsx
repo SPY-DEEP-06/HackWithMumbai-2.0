@@ -5,6 +5,7 @@ import Link from "next/link";
 import { MessageCircle, MapPin, Calendar } from "lucide-react";
 import gsap from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
+import { useAuth } from '@/contexts/AuthContext';
 
 gsap.registerPlugin(TextPlugin);
 
@@ -49,6 +50,7 @@ function CountdownTimer() {
 }
 
 export default function Hero() {
+    const { user } = useAuth();
     const [isPlaying, setIsPlaying] = useState(false);
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -94,6 +96,25 @@ export default function Hero() {
                         className={`relative w-12 h-12 md:w-16 md:h-16 rounded-full object-cover border-2 border-red-500/50 shadow-[0_0_15px_rgba(255,0,0,0.5)] transition-all duration-700 ${isPlaying ? 'animate-[spin_4s_linear_infinite]' : ''}`}
                     />
                 </div>
+            </div>
+
+            {/* Auth Buttons - Top Right */}
+            <div className="absolute top-4 right-4 z-50 md:top-8 md:right-8 flex gap-4">
+                {!user ? (
+                    <Link
+                        href="/auth"
+                        className="px-4 py-2 border border-white/20 bg-black/50 backdrop-blur-sm rounded hover:bg-white/10 hover:border-white/50 transition-all font-retro text-xs md:text-sm text-white/80"
+                    >
+                        LOGIN
+                    </Link>
+                ) : (
+                    <Link
+                        href="/dashboard"
+                        className="px-4 py-2 border border-hackathon-orange/30 bg-hackathon-orange/10 backdrop-blur-sm rounded hover:bg-hackathon-orange/20 hover:border-hackathon-orange/60 transition-all font-retro text-xs md:text-sm text-hackathon-orange"
+                    >
+                        DASHBOARD
+                    </Link>
+                )}
             </div>
 
             {/* Live Registration Indicator - Now part of flow */}
@@ -150,7 +171,7 @@ export default function Hero() {
 
             <div className="flex flex-col md:flex-row gap-6 mt-12 md:mt-20 z-20">
                 <Link
-                    href="https://unstop.com/o/bXKrsvy?lb=0AZaud6X&utm_medium=Share&utm_source=deepagho48277&utm_campaign=Online_coding_challenge"
+                    href="/register"
                     className="group relative px-6 md:px-10 py-3 md:py-4 bg-transparent inline-block min-w-max transition-all duration-300 transform hover:scale-105"
                 >
                     {/* Stranger Things Red Glow Container */}

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Cinzel_Decorative, Courier_Prime } from "next/font/google";
 import "./globals.css";
-import SmoothScroll from "@/components/layout/SmoothScroll"; // We'll make this small wrapper
+import SmoothScroll from "@/components/layout/SmoothScroll";
+import Providers from "@/components/providers";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const cinzel = Cinzel_Decorative({ weight: ["400", "700", "900"], subsets: ["latin"], variable: "--font-cinematic" });
@@ -18,13 +19,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${cinzel.variable} ${courier.variable} antialiased bg-darkhold text-white overflow-x-hidden`}>
         <div className="vignette fixed inset-0 pointer-events-none z-40"></div>
         <div className="crt fixed inset-0 pointer-events-none z-50"></div>
-        <SmoothScroll>
-          {children}
-        </SmoothScroll>
+        <Providers>
+          <SmoothScroll>
+            {children}
+          </SmoothScroll>
+        </Providers>
       </body>
     </html>
   );

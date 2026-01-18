@@ -1,0 +1,17 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Match the 'users' collection
+    match /users/{userId} {
+      // 1. Allow authenticated users to read/write ONLY their own document (for Registration/Dashboard)
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      
+      // 2. Allow ANY authenticated user to read ALL documents
+      // This supports the "Password-protected" Admin Portal client-side check.
+      // Since the password is checked on the client, we allow any logged-in user to 'read' the DB 
+      // so the Admin Portal can fetch the data.
+      allow read: if request.auth != null;
+    }
+  }
+}

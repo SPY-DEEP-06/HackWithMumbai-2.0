@@ -24,6 +24,12 @@ export default function Footer() {
                     &copy; 2026 HackWithMumbai 2.0. All Timeline Variants Reserved.
                 </p>
 
+                <div className="mt-2">
+                    <a href="/admin" target="_blank" rel="noopener noreferrer" className="text-[10px] text-gray-800 hover:text-gray-600 transition-colors font-mono">
+                        [ADMIN PORTAL]
+                    </a>
+                </div>
+
                 <div className="mt-8 pt-8 border-t border-white/5 w-full max-w-md mx-auto flex flex-col items-center">
                     <p className="font-retro text-[10px] text-gray-600 uppercase tracking-widest mb-3">Designed & Developed by</p>
                     <a href="https://linktr.ee/adapts.co" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 group">
